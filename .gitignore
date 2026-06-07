@@ -1,0 +1,36 @@
+# Research data
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/acdc/
+data/raw/acdc/*
+!data/raw/acdc/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Generated outputs
+reports/*
+!reports/.gitkeep
+notebooks/.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+
+# R
+.Rhistory
+.RData
+.Ruserdata
+renv/library/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

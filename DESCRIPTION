@@ -1,0 +1,13 @@
+Package: flowzoneValidation
+Title: Flow Zone Cognitive Validation Pipeline
+Version: 0.1.0
+Authors@R: person("HRP", "Lab", role = c("aut", "cre"),
+    email = "research@hrp-lab.org")
+Description: Data acquisition, inventory, and extraction helpers for the
+    Flow Zone cognitive validation analysis.
+License: MIT
+Encoding: UTF-8
+Imports:
+    dplyr,
+    fs,
+    readr
