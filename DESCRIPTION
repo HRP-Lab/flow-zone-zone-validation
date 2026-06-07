@@ -8,6 +8,12 @@ Description: Data acquisition, inventory, and extraction helpers for the
 License: MIT
 Encoding: UTF-8
 Imports:
-    dplyr,
-    fs,
-    readr
+    acdcquery,
+    arrow,
+    DBI,
+    digest,
+    httr,
+    jsonlite,
+    readr,
+    renv,
+    RSQLite

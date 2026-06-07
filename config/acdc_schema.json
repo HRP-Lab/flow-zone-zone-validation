@@ -1,0 +1,62 @@
+{
+  "publication_table": [
+    "publication_id",
+    "publication_code",
+    "apa_reference",
+    "conducted",
+    "added",
+    "country"
+  ],
+  "study_table": [
+    "study_id",
+    "publication_id",
+    "n_groups",
+    "n_tasks"
+  ],
+  "task_table": [
+    "task_id",
+    "task_name",
+    "task_description"
+  ],
+  "dataset_table": [
+    "dataset_id",
+    "study_id",
+    "task_id",
+    "data_excl",
+    "n_participants",
+    "n_blocks",
+    "n_trials",
+    "neutral_trials",
+    "time_limit",
+    "mean_dataset_rt",
+    "mean_dataset_acc",
+    "github",
+    "mean_age",
+    "percentage_female",
+    "n_members",
+    "number_within_conditions",
+    "group_description"
+  ],
+  "within_table": [
+    "within_id",
+    "dataset_id",
+    "within_description",
+    "percentage_congruent",
+    "percentage_neutral",
+    "n_obs",
+    "mean_obs_per_participant",
+    "mean_condition_rt",
+    "mean_condition_acc"
+  ],
+  "observation_table": [
+    "observation_id",
+    "dataset_id",
+    "subject",
+    "block",
+    "trial",
+    "within_id",
+    "congruency",
+    "accuracy",
+    "rt"
+  ]
+}

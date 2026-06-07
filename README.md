@@ -1,74 +1,143 @@
-# Flow Zone Validation
+# Flow Zone Validation: ACDC Pilot
 
-Reproducible validation pipeline for deriving cognitive windows from ACDC
-trial-level data and testing latent Flow Zone profiles.
+Reproducible exploratory analysis of whether public Stroop, Flanker, and Simon
+data contain latent behavioral profiles resembling **In Zone**, **Flat**,
+**Locked In**, and **Spun Out**.
 
-This repository is separate from the
-[Flow-Zone application](https://github.com/HRP-Lab/Flow-Zone) so that raw
-research data, analysis dependencies, and validation outputs can be managed
-independently.
+ACDC is a conflict-control analogue. This project does not claim to validate
+MFT-M, adaptive CCC bits/second, diagnoses, or brain states.
 
-## Pipeline
+## Requirements
 
-1. `scripts/00_download_acdc.R` downloads an ACDC archive or data file.
-2. `scripts/01_inventory_acdc.R` creates a machine-readable file inventory.
-3. `scripts/02_extract_trials_acdc.R` combines matching trial CSV files.
-4. `scripts/03_build_cognitive_windows.py` assigns trials to windows and
-   derives cognitive features.
-5. `scripts/04_feature_audit.py` audits feature completeness and dispersion.
-6. `scripts/05_pca_gmm_hdbscan.py` compares PCA-based GMM and HDBSCAN labels.
+- Windows PowerShell
+- Git
+- R 4.4 or newer
+- Python 3.12 through the Windows Python launcher (`py -3.12`)
 
-The R extraction script is intentionally schema-neutral. Update its
-`required_columns` vector after confirming the ACDC release schema.
+Do not use the system Python or Python 3.14 for this project.
 
 ## Setup
 
-Python 3.11 or newer is recommended.
+From the repository root:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-python -m pip install -e .
+.\scripts\setup_python.ps1
+& "C:\Program Files\R\R-4.6.0\bin\Rscript.exe" scripts/setup_r.R
 ```
 
-For R, install the packages declared in `DESCRIPTION`:
+The Python script creates `.venv`, installs the package and development
+dependencies from exact tested pins, then runs the tests. The R script
+creates/restores the `renv` environment and writes `renv.lock`.
 
-```r
-install.packages(c("dplyr", "fs", "readr"))
-```
+## Run The Pipeline
 
-## Run
-
-Set the approved ACDC download URL rather than committing a data URL or
-credentials:
+Development uses the latest ACDC release:
 
 ```powershell
-$env:ACDC_DOWNLOAD_URL = "https://example.org/acdc.zip"
+.\scripts\run_pipeline.ps1
+```
+
+By default, development runs use a deterministic subset containing four
+datasets per task and 20 complete participants per dataset. This preserves
+whole participant/block sequences and enough source diversity for the
+registered gates while keeping iteration practical.
+
+To reuse the existing download and extract:
+
+```powershell
+.\scripts\run_pipeline.ps1 -SkipDownload -SkipExtraction
+```
+
+For a frozen formal run, select a release tag:
+
+```powershell
+.\scripts\run_pipeline.ps1 -AcdcTag "initial-release" -FullData
+```
+
+The release tag, database SHA-256, package versions, Git commit, and parameters
+are written to `reports/run_manifest.json`.
+
+Individual stages:
+
+```powershell
 Rscript scripts/00_download_acdc.R
 Rscript scripts/01_inventory_acdc.R
 Rscript scripts/02_extract_trials_acdc.R
-python scripts/03_build_cognitive_windows.py
-python scripts/04_feature_audit.py
-python scripts/05_pca_gmm_hdbscan.py
+.\.venv\Scripts\python.exe scripts/02b_build_pilot_subset.py
+.\.venv\Scripts\python.exe scripts/03_build_cognitive_windows.py `
+  --input data/interim/acdc_pilot_trial_extract.parquet
+.\.venv\Scripts\python.exe scripts/04_feature_audit.py
+.\.venv\Scripts\python.exe scripts/05_pca_gmm_hdbscan.py
 ```
 
-Each script supports `--help` or positional path overrides. The defaults form
-a pipeline from `data/raw/acdc` through `data/processed` and `reports`.
+The modelling script reads the audit JSON and automatically skips tasks that
+fail the registered gates. It never bypasses a failed gate.
 
-## Expected trial fields
+## Pipeline
 
-The Python feature builder recognizes these fields when present:
+1. Download `acdc.db` with `acdcquery` and verify its release SHA-256.
+2. Validate the SQLite schema against `config/acdc_schema.json`.
+3. Inventory all datasets and identify Stroop, Flanker, and Simon families.
+4. Extract trial rows with documented ACDC joins and original values.
+5. Flag RT quality without deleting raw rows.
+6. Fit expected raw/log-RT models and construct `u_t`.
+7. Build block-bounded 80-trial primary windows and 60/120 sensitivity windows.
+8. Produce an audit and task-level modelling decisions.
+9. Run neutral PCA/GMM/HDBSCAN analyses only for eligible tasks.
+10. Test source confounding before any pooled interpretation.
 
-- Required: `participant_id`, `timestamp`, `rt_ms`, `correct`
-- Optional: `session_id`, `is_switch`, `perseverative_error`, `n_choices`
+See [methods.md](docs/methods.md) and
+[data_dictionary.md](docs/data_dictionary.md) for exact definitions.
 
-Missing optional fields produce missing derived features rather than fabricated
-values.
+## Outputs
 
-## Data policy
+```text
+data/interim/acdc_task_inventory.csv
+data/interim/acdc_trial_extract.csv.gz
+data/interim/acdc_trial_extract.parquet
+data/interim/acdc_pilot_trial_extract.parquet
+data/processed/acdc_cleaned_trials.parquet
+data/processed/cognitive_windows.parquet
+data/processed/cluster_assignments.parquet
+reports/run_manifest.json
+reports/acdc_data_audit.md
+reports/acdc_pilot_subset.md
+reports/exploratory_clusters.md
+reports/figures/
+```
 
-Raw, interim, and processed participant data are ignored by Git. Keep only
-directory placeholders and non-sensitive documentation under version control.
-Before sharing any output, verify that it is de-identified and permitted by the
-source dataset's license and ethics conditions.
+Raw, interim, processed, and generated report contents are excluded from Git.
+
+## Quality Gates
+
+A task enters modelling only when it has:
+
+- At least 300 valid primary windows.
+- At least three contributing datasets.
+- No selected feature above 20% missingness.
+- No constant or degenerate selected features.
+- At least 80% complete support for the selected feature set before minimal
+  task-median imputation.
+
+Metrics structurally unavailable for a task are not imputed.
+
+Pooled modelling is skipped when participant-grouped classifiers show
+substantial residual dataset or task predictability.
+
+## Tests
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -p no:cacheprovider
+```
+
+The suite covers the shared SQLite schema/SQL contract, RT cleaning,
+residualisation, block boundaries, dynamics, conflict costs, PES sufficiency,
+audit failures, participant leakage, deterministic GMM behavior, and neutral
+zone alignment.
+
+## Interpretation
+
+`k=4` is tested but never forced. Clusters retain neutral identifiers such as
+`Stroop-GMM4-C1`. A null, unstable, source-dominated, or continuous-manifold
+result is a valid outcome and would favor dimensional descriptions of
+throughput, persistence, and instability over four discrete zones.

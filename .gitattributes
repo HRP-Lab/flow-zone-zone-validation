@@ -1,0 +1,9 @@
+* text=auto
+*.py text eol=lf
+*.R text eol=lf
+*.Rmd text eol=lf
+*.sql text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.ps1 text eol=crlf
+renv/activate.R whitespace=-trailing-space

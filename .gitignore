@@ -18,6 +18,7 @@ notebooks/.ipynb_checkpoints/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+pytest-cache-files-*/
 .ruff_cache/
 .venv/
 venv/
@@ -28,6 +29,9 @@ venv/
 .RData
 .Ruserdata
 renv/library/
+renv/bootstrap-library/
+renv/staging/
+renv/python/
 
 # Editors and operating systems
 .vscode/
