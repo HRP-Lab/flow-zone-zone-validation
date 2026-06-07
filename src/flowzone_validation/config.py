@@ -34,6 +34,27 @@ class PilotConfig:
     zone_alignment_bootstraps: int = 500
 
 
+@dataclass(frozen=True)
+class ZhangTangConfig:
+    random_seed: int = 42
+    primary_window_size: int = 80
+    mi_permutations: int = 50
+    minimum_mi_observations: int = 40
+    minimum_mi_class_count: int = 3
+    efficiency_bin_counts: tuple[int, ...] = (3, 4, 5)
+    tail_z_threshold: float = 2.0
+    minimum_tail_observations: int = 20
+    large_update_quantile: float = 0.90
+    minimum_update_components: int = 3
+    minimum_cluster_windows: int = 30
+    minimum_cluster_subjects: int = 10
+    source_dominance_threshold: float = 0.80
+    minimum_task_next_windows: int = 50
+    prediction_folds: int = 5
+    ridge_alpha: float = 1.0
+    bootstrap_repetitions: int = 500
+
+
 def load_config(path: Path | str) -> PilotConfig:
     """Load the versioned JSON configuration."""
     payload = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -42,3 +63,13 @@ def load_config(path: Path | str) -> PilotConfig:
             int(value) for value in payload["sensitivity_window_sizes"]
         )
     return PilotConfig(**payload)
+
+
+def load_zhang_tang_config(path: Path | str) -> ZhangTangConfig:
+    """Load the versioned Zhang-Tang follow-up configuration."""
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    if "efficiency_bin_counts" in payload:
+        payload["efficiency_bin_counts"] = tuple(
+            int(value) for value in payload["efficiency_bin_counts"]
+        )
+    return ZhangTangConfig(**payload)

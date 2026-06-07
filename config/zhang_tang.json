@@ -1,0 +1,19 @@
+{
+  "random_seed": 42,
+  "primary_window_size": 80,
+  "mi_permutations": 50,
+  "minimum_mi_observations": 40,
+  "minimum_mi_class_count": 3,
+  "efficiency_bin_counts": [3, 4, 5],
+  "tail_z_threshold": 2.0,
+  "minimum_tail_observations": 20,
+  "large_update_quantile": 0.9,
+  "minimum_update_components": 3,
+  "minimum_cluster_windows": 30,
+  "minimum_cluster_subjects": 10,
+  "source_dominance_threshold": 0.8,
+  "minimum_task_next_windows": 50,
+  "prediction_folds": 5,
+  "ridge_alpha": 1.0,
+  "bootstrap_repetitions": 500
+}

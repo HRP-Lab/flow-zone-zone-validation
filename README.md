@@ -68,6 +68,7 @@ Rscript scripts/02_extract_trials_acdc.R
   --input data/interim/acdc_pilot_trial_extract.parquet
 .\.venv\Scripts\python.exe scripts/04_feature_audit.py
 .\.venv\Scripts\python.exe scripts/05_pca_gmm_hdbscan.py
+.\.venv\Scripts\python.exe scripts/06_zhang_tang_followup.py
 ```
 
 The modelling script reads the audit JSON and automatically skips tasks that
@@ -99,10 +100,16 @@ data/interim/acdc_pilot_trial_extract.parquet
 data/processed/acdc_cleaned_trials.parquet
 data/processed/cognitive_windows.parquet
 data/processed/cluster_assignments.parquet
+data/processed/acdc_zhang_tang_windows.parquet
 reports/run_manifest.json
 reports/acdc_data_audit.md
 reports/acdc_pilot_subset.md
 reports/exploratory_clusters.md
+reports/zhang_tang_followup.md
+reports/tables/zhang_tang_feature_audit.csv
+reports/tables/zhang_tang_cluster_profiles.csv
+reports/tables/large_update_usefulness.csv
+reports/tables/next_window_prediction_comparison.csv
 reports/figures/
 ```
 

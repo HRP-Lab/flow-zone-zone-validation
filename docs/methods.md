@@ -90,3 +90,21 @@ logistic cross-validation and permutation tests.
 
 GMMs compare `k=1..8`. Four components are a hypothesis, not a target. Cluster
 names remain neutral and are compared post hoc with directional prototypes.
+
+## Zhang-Tang Follow-Up
+
+The post-modelling follow-up reconstructs only registered full 80-trial
+windows. Mutual information is reported in bits after subtracting the mean
+permutation null estimate. Response-choice MI remains structurally unavailable
+because ACDC does not provide response identity in the verified extract.
+
+Window deltas and next-window outcomes require consecutive window indices
+within the same dataset, participant, task, and block. Large updates are the
+dataset-task upper decile of the RMS magnitude of available robust-standardized
+throughput, accuracy, RT-CV, and control-cost deltas. Tail rates use an absolute
+z threshold of 2.0.
+
+Next-window prediction uses participant-grouped ridge regression. Imputation,
+robust scaling, and categorical encoding are fitted independently inside each
+training fold. Cluster-enhanced prediction is explicitly treated as a
+transductive sensitivity analysis.

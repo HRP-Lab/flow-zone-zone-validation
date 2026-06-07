@@ -47,6 +47,21 @@ avoid duplicating more than 1 GB of uncompressed data beside the Parquet file.
 | `cog_diff_entropy` | Normalized histogram entropy of successive changes |
 | `control_cost_rt_ms` | Incongruent minus congruent correct RT |
 | `control_cost_acc` | Congruent minus incongruent accuracy |
+
+## Zhang-Tang Follow-Up Windows
+
+| Field | Meaning |
+|---|---|
+| `mi_congruency_correct` | Bias-corrected MI in bits between congruency and correctness |
+| `mi_congruency_response` | Structurally unavailable because response identity is absent |
+| `mi_prev_error_next_correct` | Bias-corrected MI between previous error and current correctness |
+| `mi_condition_efficiency_bin_sens` | Median condition-efficiency MI across registered bin counts |
+| `delta_*` | Current minus immediately previous full window within the same boundary |
+| `combined_update_magnitude` | RMS robust-standardized window update magnitude |
+| `upper_tail_rate_abs_rt_resid_z` | Fraction of absolute log-RT residual z-scores at least 2 |
+| `upper_tail_rate_abs_delta_u_z` | Fraction of absolute within-window delta-u z-scores at least 2 |
+| `large_update_window` | Dataset-task upper-decile update indicator |
+| `next_*` | Immediately subsequent full-window outcome within the same boundary |
 | `post_error_slowing_ms` | Post-error minus post-correct RT when supported |
 | `post_error_adjustment_abs_ms` | Magnitude of supported post-error adjustment |
 | `pes_supported` | Whether both comparison sets meet minimum counts |

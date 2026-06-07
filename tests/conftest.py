@@ -80,6 +80,11 @@ def synthetic_trials() -> pd.DataFrame:
 
 
 @pytest.fixture
+def make_trials_fixture():
+    return make_trials
+
+
+@pytest.fixture
 def acdc_connection() -> sqlite3.Connection:
     connection = sqlite3.connect(":memory:")
     connection.executescript(
