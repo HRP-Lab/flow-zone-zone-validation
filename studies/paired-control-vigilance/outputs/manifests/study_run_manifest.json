@@ -1,5 +1,5 @@
 {
-  "git_commit": "872f824ba6c4c6066fe24209693dec08ba1c82e5",
+  "git_commit": "094ef7882ba35948f1a226893169ed85a5eca78c",
   "python": {
     "version": "3.12.10",
     "implementation": "CPython",
@@ -22,6 +22,16 @@
       "selected_control_model": "Paired-Control-GMM4-full",
       "n_sessions": 768,
       "n_participants": 466
+    },
+    "sart_3min_validation": {
+      "raw_input": "data/raw/stroop_sart_flanker/Raw_Sart.xlsx",
+      "raw_sha256": "b4f04ab9b583a92f31ee45e83a27fe9c63011147560118b1b9b06ded244998fe",
+      "prefix_trials": 144,
+      "prefix_duration_seconds": 180.0,
+      "matched_sessions": 744,
+      "matched_participants": 456,
+      "seed": 42,
+      "bootstrap_repetitions": 5000
     }
   }
 }

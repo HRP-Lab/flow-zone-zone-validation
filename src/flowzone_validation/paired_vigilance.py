@@ -267,6 +267,43 @@ def _component_score(
     return score, loading_table
 
 
+def build_sart_dimensions(
+    frame: pd.DataFrame,
+    *,
+    omission_column: str = "sart_omission_rate",
+    rt_cv_column: str = "sart_go_rt_cv",
+    commission_column: str = "sart_commission_rate",
+    anticipatory_column: str = "sart_anticipatory_rate",
+    engagement_name: str = "sart_engagement_index",
+    inhibition_name: str = "sart_inhibitory_stability_index",
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Build transparent SART engagement and inhibitory-stability scores."""
+    scored = frame.copy()
+    engagement, engagement_loadings = _component_score(
+        scored,
+        [
+            (omission_column, -1),
+            (rt_cv_column, -1),
+        ],
+        engagement_name,
+    )
+    inhibition, inhibition_loadings = _component_score(
+        scored,
+        [
+            (commission_column, -1),
+            (anticipatory_column, -1),
+        ],
+        inhibition_name,
+    )
+    scored[engagement_name] = engagement
+    scored[inhibition_name] = inhibition
+    loadings = pd.concat(
+        [engagement_loadings, inhibition_loadings],
+        ignore_index=True,
+    )
+    return scored, loadings
+
+
 def build_session_features(
     sessions: pd.DataFrame,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -349,30 +386,11 @@ def build_session_features(
         ]
     ].mean(axis=1)
 
-    engagement, engagement_loadings = _component_score(
+    frame, loadings = build_sart_dimensions(
         frame,
-        [
-            ("sart_omission_rate", -1),
-            ("sart_go_rt_cv", -1),
-        ],
-        "sart_engagement_index",
     )
-    inhibition, inhibition_loadings = _component_score(
-        frame,
-        [
-            ("sart_commission_rate", -1),
-            ("sart_anticipatory_rate", -1),
-        ],
-        "sart_inhibitory_stability_index",
-    )
-    frame["sart_engagement_index"] = engagement
-    frame["sart_inhibitory_stability_index"] = inhibition
-    frame["low_engagement_candidate"] = engagement.le(-0.5)
-    frame["high_engagement_candidate"] = engagement.ge(0.5)
-    loadings = pd.concat(
-        [engagement_loadings, inhibition_loadings],
-        ignore_index=True,
-    )
+    frame["low_engagement_candidate"] = frame["sart_engagement_index"].le(-0.5)
+    frame["high_engagement_candidate"] = frame["sart_engagement_index"].ge(0.5)
     return frame, loadings
 
 

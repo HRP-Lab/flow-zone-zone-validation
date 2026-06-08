@@ -120,6 +120,39 @@ trials for C1, 106 for C2, 81 for C3, and 104 for C4. Almost half of C3 sessions
 produced fewer than 80 trials and 18.4% produced fewer than 60. Trial count and
 abstention are therefore essential in any prospective protocol.
 
+## Three-Minute SART
+
+Trial-level raw SART data were linked to 744 paired sessions from 456
+participants using exact participant-bounded full-session fingerprints. The
+first 144 trials represented exactly three minutes and contained 131 Go and 13
+NoGo trials.
+
+| Dimension | Spearman correlation | Lin concordance | Within-person correlation |
+|---|---:|---:|---:|
+| Engagement-vigilance | .912 | .940 | .898 |
+| Inhibitory stability | .952 | .961 | .930 |
+
+The existing low-engagement threshold showed sensitivity `.838`, specificity
+`.929`, balanced accuracy `.883`, and Cohen's kappa `.763` against the full
+SART. The control-profile association was preserved: Cramer's V was `.329` for
+the full task and `.334` for the abbreviated task.
+
+Repeat-session ICC was slightly lower for the abbreviation:
+
+| Dimension | Full SART ICC | Three-minute ICC |
+|---|---:|---:|
+| Engagement-vigilance | .391 | .347 |
+| Inhibitory stability | .491 | .434 |
+
+Participant-grouped prediction was also attenuated. Engagement-only prediction
+of task-active efficacy declined from `R2 = .128` to `.109`, and engagement-only
+four-profile balanced accuracy declined from `.411` to `.369`.
+
+A 180-trial, 3m45s prefix provided higher agreement: concordance `.975` for
+engagement and `.986` for inhibition, with low-engagement balanced accuracy
+`.933`. Three minutes is therefore a defensible time/fidelity compromise, not
+a lossless replacement.
+
 ## Claim-Safe Result
 
 This dataset supports a reproducible four-component statistical description of

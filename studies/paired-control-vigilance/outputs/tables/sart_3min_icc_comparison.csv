@@ -1,0 +1,5 @@
+sart_source,feature,icc_1,n_windows,n_subjects,mean_windows_per_subject,interpretation
+full_225,sart_inhibitory_stability_index,0.49118157270242724,491,203,2.41871921182266,mixed
+full_225,sart_engagement_index,0.3910171950317637,491,203,2.41871921182266,mixed
+abbreviated_144,sart_inhibitory_stability_index,0.4337422838495176,491,203,2.41871921182266,mixed
+abbreviated_144,sart_engagement_index,0.34650285227887784,491,203,2.41871921182266,mixed

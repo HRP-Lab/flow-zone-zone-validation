@@ -167,6 +167,49 @@ inside each training fold. Reported metrics were balanced accuracy, macro F1,
 per-class recall, posterior confidence, confident coverage at probability
 `>= 0.60`, and accuracy among confident predictions.
 
+## Three-Minute SART Abbreviation
+
+The raw SART workbook contained 788 complete main blocks of 225 trials. Raw
+bouts were matched to paired-study sessions only within participant. One-to-one
+assignment minimized a fingerprint distance based on full-session commission
+percentage, omission percentage, anticipatory count, Go mean RT, and Go RT CV.
+Assignments were accepted only when the normalized fingerprint cost was at most
+`.01`. This retained 744 exact matches from 456 participants; 20 mismatched or
+ambiguous assignments and four paired sessions without a candidate raw bout
+were excluded.
+
+The primary abbreviation was the first 144 trials:
+
+```text
+144 trials x 1250 ms = 180 seconds
+131 Go trials
+13 NoGo trials
+```
+
+For each prefix, commissions were divided by presented NoGo trials, omissions
+and anticipatory responses by presented Go trials, and Go RT mean, SD, and CV
+used valid Go responses. Engagement-vigilance and inhibitory-stability scores
+were reconstructed using the same within-setting robust standardization,
+orientation, equal weighting, median centering, and IQR scaling as the full
+study.
+
+Agreement with the full published scores was evaluated using Pearson and
+Spearman correlations, Lin's concordance, bias, MAE, and RMSE. The existing
+`-0.5` low-engagement threshold was compared using sensitivity, specificity,
+balanced accuracy, and Cohen's kappa. Person-mean decomposition separated
+between-person and within-person agreement.
+
+The validation also repeated:
+
+- control-profile versus low-engagement association;
+- repeat-session ICC;
+- participant-grouped prediction of task-active efficacy and neutral profile;
+- duration sensitivity at 90, 120, 144, and 180 trials.
+
+Interpretive agreement gates were post hoc and explicitly heuristic. The
+analysis is internal because every abbreviated observation is nested within its
+full-session reference and uses the same fixed sequence.
+
 ## Statistical Status
 
 All mixture labels, thresholds, and short-protocol analyses are exploratory.

@@ -61,6 +61,12 @@ The raw-prefix analysis matched 742 sessions from 458 participants across both
 Stroop and Flanker. Session matching uses participant identity and session
 date/time information from the explicit published linkage table.
 
+The SART abbreviation analysis used full-session behavioural fingerprints
+because the source tasks were completed on separate days and date-only matching
+was incomplete. It retained 744 exact one-to-one raw SART matches from 456
+participants. No raw bout was matched across participants, and 20 mismatched or
+ambiguous assignments were excluded.
+
 ## Secondary-Analysis Boundary
 
 The original study was not designed to validate the present mixture taxonomy

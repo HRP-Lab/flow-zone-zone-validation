@@ -78,6 +78,9 @@ data and is not committed.
 - A two-minute Stroop plus conservative two-minute Flanker prefix recovered the
   full-session four-profile partition with participant-grouped balanced
   accuracy `0.744`.
+- The first 144 SART trials retained strong agreement with the full task:
+  engagement-vigilance Spearman `r = .912`, inhibitory stability `r = .952`,
+  and low-engagement balanced accuracy `0.883`.
 
 The shortened-task result is internal recovery, not independent validation. A
 new prospective sample is required before clinical, occupational, routing, or

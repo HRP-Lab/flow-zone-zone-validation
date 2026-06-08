@@ -1,0 +1,2 @@
+raw_main_sessions,paired_sessions,candidate_assignments,accepted_exact_fingerprint_matches,rejected_fingerprint_assignments,unmatched_paired_sessions,unmatched_or_unused_raw_sessions,matched_participants,maximum_accepted_fingerprint_cost
+788,768,764,744,20,4,44,456,3.156586103614245e-14

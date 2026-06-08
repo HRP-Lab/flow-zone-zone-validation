@@ -1,0 +1,6 @@
+metric,abbreviated_column,full_column,n_sessions,pearson_r,spearman_r,lins_ccc,mean_bias,mae,rmse
+commission_percent,full_sart_commission_percent_raw,sart_commission_percent,744,1.0,1.0,1.0,0.0,0.0,0.0
+omission_percent,full_sart_omission_percent_raw,sart_omission_percent,744,1.0,0.9999999999999999,1.0,0.0,0.0,0.0
+anticipatory_count,full_sart_anticipatory_count_raw,sart_anticipatory_count,744,1.0,1.0,1.0,0.0,0.0,0.0
+go_mean_rt_ms,full_sart_go_mean_rt_ms_raw,sart_go_mean_rt_ms,744,1.0,1.0,1.0,-9.01548847523568e-15,1.945206242199156e-13,2.5499615519260693e-13
+go_rt_cv,full_sart_go_rt_cv_raw,sart_go_rt_cv,744,0.9999999999999998,1.0,1.0,1.471717013490001e-17,2.507514805113572e-16,2.951409941756895e-16

@@ -15,6 +15,10 @@
   },
   "short_protocol_candidate": {
     "vigilance_minutes": 3,
+    "vigilance_task": "source_prefix_sart",
+    "sart_prefix_trials": 144,
+    "sart_prefix_go_trials": 131,
+    "sart_prefix_nogo_trials": 13,
     "stroop_minutes": 2,
     "flanker_minutes": 2,
     "minimum_stroop_scored_trials": 60,

@@ -47,7 +47,7 @@ short reminder and invoke practice only after a mapping error or long gap.
 | Option | Main advantage | Main limitation | Scored battery duration |
 |---|---|---|---:|
 | Full source-compatible SART | Direct continuity with the paired study and its engagement/inhibitory-stability findings | Longer than the proposed seven-minute battery | About 8 min 41 sec |
-| Three-minute abbreviated SART | Preserves the study's Go/NoGo construct within seven minutes | Only about 16 NoGo trials; shortened reliability is not established here | 7 min |
+| Three-minute source-prefix SART | Preserves the study's Go/NoGo construct within seven minutes and now has strong internal abbreviation evidence | Contains only 13 NoGo trials and remains nested within the full task | 7 min |
 | Three-minute PVT-B | Better-established three-minute alertness and sleep-loss probe with low executive demand | Not present in this dataset; does not directly measure response inhibition | 7 min |
 
 For a study intended to replicate and extend the current findings, SART is the
@@ -55,7 +55,7 @@ preferred first choice. For an app specifically targeting behavioural
 alertness, sleep-loss sensitivity, and under-activation, PVT-B may be the
 cleaner eventual choice.
 
-The strongest development study would administer both abbreviated SART and
+The strongest prospective study would administer both abbreviated SART and
 PVT-B, preferably in counterbalanced blocks, and test:
 
 ```text
@@ -98,27 +98,54 @@ seven-minute total.
 
 ### Three-Minute Abbreviated Design
 
-| Element | Candidate specification |
+| Element | Source-prefix specification |
 |---|---|
 | Duration | 180 seconds |
 | Main trials | 144 total trials at 1250 ms SOA |
-| Composition | 128 Go and 16 NoGo trials |
-| Sequence | Sixteen balanced repetitions of digits 1-9, pseudorandomized with constraints |
+| Composition | 131 Go and 13 NoGo trials |
+| Sequence | The first 144 trials of the source study's fixed semi-random sequence |
 | Stimulus and mask | Preserve the 250 ms stimulus and 900 ms mask |
 | Practice | 18 trials at onboarding; brief reminder on repeat use |
 
-The three-minute version preserves the source timing and Go/NoGo ratio, but it
-is a new shortened task. Sixteen NoGo observations may be adequate for a coarse
-commission rate but are weak evidence for fine-grained inhibition dynamics or
-post-NoGo measures.
+An internal validation of this exact prefix used 744 sessions from 456
+participants:
+
+| Result | Engagement-vigilance | Inhibitory stability |
+|---|---:|---:|
+| Spearman correlation with full SART | .912 | .952 |
+| Lin concordance with full SART | .940 | .961 |
+| Within-person correlation with full SART | .898 | .930 |
+
+At the existing low-engagement threshold, balanced accuracy against the full
+SART was `.883` and Cohen's kappa was `.763`. The control-profile association
+was also retained: Cramer's V was `.329` for the full SART and `.334` for the
+three-minute prefix.
+
+This supports the exact 131/13 prefix as a research-protocol candidate. It is
+still internal abbreviation evidence because the prefix is nested in the full
+task. A redesigned 128/16 sequence may improve NoGo evidence but is a different
+task and does not inherit these results.
+
+The duration sensitivity analysis found:
+
+| Duration | Trials | Go/NoGo | Engagement concordance | Inhibition concordance | Low-engagement balanced accuracy |
+|---|---:|---:|---:|---:|---:|
+| 1m52.5s | 90 | 84/6 | .844 | .874 | .808 |
+| 2m30s | 120 | 109/11 | .922 | .930 | .871 |
+| 3m00s | 144 | 131/13 | .940 | .961 | .883 |
+| 3m45s | 180 | 161/19 | .975 | .986 | .933 |
+
+Three minutes is a defensible time/fidelity compromise. Use 3m45s when maximum
+agreement is more important than keeping the scored battery to seven minutes.
 
 ### Sequence Constraints
 
-- Balance each digit exactly across the block.
-- Prevent immediate repeats of the NoGo digit.
-- Avoid highly predictable NoGo spacing.
+- For direct continuity, use the versioned first-144 source sequence.
+- For a redesigned sequence, balance digits and NoGo spacing, then validate it
+  independently against the source-prefix and full SART.
 - Use a fixed set of versioned sequences or save the random seed.
-- Keep the Go/NoGo ratio identical across sessions and participants.
+- Keep the Go/NoGo ratio identical across sessions and participants within a
+  task version.
 - Do not change the NoGo target within a person's longitudinal series.
 
 ### Required Raw Events
@@ -167,13 +194,15 @@ error bursts
 RT distribution tails
 ```
 
-The paired study directly supports the two composite dimensions. It does not
-establish that the same scores remain reliable in 144 trials.
+The paired study and abbreviation analysis support both composite dimensions
+in the source-compatible 144-trial prefix. Repeat-session ICC was modestly
+attenuated relative to the full SART, and downstream four-profile prediction
+was weaker, so the versions should retain separate norms and model versions.
 
 ### Provisional Quality Gates
 
 - Full block completion without backgrounding or timing failure.
-- All 16 abbreviated-task NoGo trials are presented.
+- All 13 source-prefix NoGo trials are presented.
 - NoGo commission rate is reported with its denominator and uncertainty.
 - Go RT variability has enough valid Go responses after exclusions.
 - A comprehension failure or near-universal responding/nonresponding triggers

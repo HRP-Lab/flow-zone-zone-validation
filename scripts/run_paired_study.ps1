@@ -53,4 +53,15 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
     --seed $Seed
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+& $Python (Join-Path $PSScriptRoot "12_validate_sart_3min.py") `
+    --sessions $FeatureFile `
+    --output-dir $TableDir `
+    --figure-dir $FigureDir `
+    --report (Join-Path $ReportDir "sart_3min_validation.md") `
+    --metrics (Join-Path $ManifestDir "sart_3min_validation_metrics.json") `
+    --manifest (Join-Path $ManifestDir "study_run_manifest.json") `
+    --bootstrap-repetitions $AssociationBootstrapRepetitions `
+    --seed $Seed
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
 Write-Host "Paired study outputs written to $OutputRoot"

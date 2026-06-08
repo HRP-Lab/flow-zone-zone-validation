@@ -2,12 +2,13 @@
 
 ## Recommended Paper Type
 
-Frame the manuscript as an exploratory secondary analysis with three linked
+Frame the manuscript as an exploratory secondary analysis with four linked
 contributions:
 
 1. multivariate task-active control profiles across paired Stroop and Flanker;
 2. incremental SART engagement-vigilance and inhibitory-stability dimensions;
 3. repeat-session structure and shortened-task recoverability.
+4. internal validation of a three-minute, 144-trial SART prefix.
 
 Do not lead with an app, interventions, four zones, or brain-state language.
 Those are implications for prospective research, not findings of this dataset.
@@ -25,11 +26,14 @@ sources of cognitive performance variation.
 
 **Method:** Report the public dataset, 466 participants, 768 paired sessions,
 three robust task-active dimensions, neutral GMM comparison, SART dimensions,
-participant-grouped inference, repeat-session analyses, and raw-prefix recovery.
+participant-grouped inference, repeat-session analyses, raw-prefix recovery,
+and the 144-trial SART abbreviation analysis.
 
 **Results:** Report the four-component BIC/stability result, centroid contrasts,
 control-vigilance association, mixed ICC/transition structure, and `.744`
-balanced accuracy for the conservative shortened pair.
+balanced accuracy for the conservative shortened pair. Report three-minute
+SART engagement and inhibition concordance (`.940` and `.961`) and
+low-engagement balanced accuracy (`.883`).
 
 **Conclusion:** Paired conflict tasks distinguish regulated, slow compensatory,
 globally overloaded, and fast brittle candidate profiles, while SART engagement
@@ -59,6 +63,7 @@ Use [METHODS.md](METHODS.md) as the source. Include:
 - participant-grouped cross-validation;
 - repeat-session ICC and transition definitions;
 - raw-prefix timing assumptions and Flanker discrepancy;
+- participant-bounded SART fingerprint linkage and 144-trial abbreviation;
 - analysis status and claim boundary.
 
 ### Results
@@ -72,7 +77,8 @@ Use [RESULTS.md](RESULTS.md) and the tracked CSV files. Recommended order:
 5. between/within and ICC results;
 6. repeat-session transitions;
 7. shortened-task recovery;
-8. sensitivity and limitations.
+8. three-minute SART agreement and duration sensitivity;
+9. sensitivity and limitations.
 
 ### Discussion
 
@@ -92,6 +98,7 @@ Use [RESULTS.md](RESULTS.md) and the tracked CSV files. Recommended order:
 3. Raw profile centroids with neutral IDs.
 4. SART association, ICC, and repeat-session results.
 5. Shortened-task recovery and per-profile recall.
+6. Three-minute SART agreement and duration sensitivity.
 
 ## Primary Figures
 

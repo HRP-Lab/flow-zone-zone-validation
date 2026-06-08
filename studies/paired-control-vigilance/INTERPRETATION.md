@@ -126,8 +126,21 @@ SART is the replication-first option because it was administered in the paired
 study. PVT-B is an alternative when the primary target is low-control
 behavioural alertness and sleep-loss sensitivity. A full source-compatible SART
 would extend the scored battery to approximately 8 minutes 41 seconds; a
-three-minute abbreviated SART preserves the seven-minute target but requires
-new reliability validation.
+three-minute source-prefix SART preserves the seven-minute target and shows
+strong internal agreement with the full task.
+
+Across 744 matched sessions, the three-minute SART retained engagement-
+vigilance (`Spearman r = .912`, concordance `.940`) and inhibitory stability
+(`r = .952`, concordance `.961`). Within-person agreement was `.898` and `.930`,
+respectively. The low-engagement flag achieved balanced accuracy `.883` and
+kappa `.763` against the full task.
+
+This supports the exact first-144-trial source sequence as the current
+seven-minute protocol choice. It does not validate a newly balanced sequence or
+an independently administered short SART. Repeat-session ICC and downstream
+profile prediction were modestly weaker than with the full task. A 3m45s
+180-trial option provides materially higher fidelity when an extra 45 seconds
+is acceptable.
 
 For Stroop, target at least 80 scored trials and normally abstain below 60. The
 source Flanker timing supports 44 trials as a conservative two-minute minimum.
