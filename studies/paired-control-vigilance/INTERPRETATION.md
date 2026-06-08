@@ -111,13 +111,23 @@ The current internal-recovery evidence justifies prospective validation of:
 
 ```text
 20-30 second context check
-3-minute PVT-like vigilance probe
+3-minute abbreviated SART or PVT-like vigilance probe
 2-minute Stroop
 2-minute Flanker
 probabilistic four-profile task-active output
 continuous vigilance output
 abstention for insufficient trials or low confidence
 ```
+
+High-level implementation requirements for all three tasks are specified in
+[PROTOCOL_TASK_SPECS.md](PROTOCOL_TASK_SPECS.md).
+
+SART is the replication-first option because it was administered in the paired
+study. PVT-B is an alternative when the primary target is low-control
+behavioural alertness and sleep-loss sensitivity. A full source-compatible SART
+would extend the scored battery to approximately 8 minutes 41 seconds; a
+three-minute abbreviated SART preserves the seven-minute target but requires
+new reliability validation.
 
 For Stroop, target at least 80 scored trials and normally abstain below 60. The
 source Flanker timing supports 44 trials as a conservative two-minute minimum.

@@ -13,6 +13,11 @@ The study asks:
 4. Can shortened Stroop and Flanker prefixes recover the full-session
    exploratory partition well enough to justify prospective validation?
 
+The proposed protocol can use SART, which has direct continuity with this
+dataset, or a PVT-like probe, which may provide a cleaner brief measure of
+behavioural alertness. The alternatives are specified in
+[PROTOCOL_TASK_SPECS.md](PROTOCOL_TASK_SPECS.md).
+
 The selected exploratory model contains four neutral components. Interpretive
 names are reported only as candidates:
 
@@ -31,6 +36,7 @@ or demonstrated intervention targets.
 - [Methods](METHODS.md)
 - [Results](RESULTS.md)
 - [Interpretation](INTERPRETATION.md)
+- [Three-task protocol specifications](PROTOCOL_TASK_SPECS.md)
 - [Data provenance](DATA_PROVENANCE.md)
 - [Paper guide](PAPER_GUIDE.md)
 - [Analysis configuration](config/study.json)
