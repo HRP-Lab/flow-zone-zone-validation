@@ -589,6 +589,138 @@ abstention_reason
 The neutral machine-readable profile IDs should remain available even when the
 interface uses descriptive candidate names.
 
+## Concurrent RR/HRV Extension
+
+### Purpose
+
+The prospective app may collect RR intervals continuously while the cognitive
+battery is administered. Cognitive and autonomic outputs should remain
+complementary rather than being collapsed into one inferred state:
+
+```text
+Mind output
+= task-active control profile + vigilance
+
+Body output
+= regulatory reserve + variability organisation
+  + mobilisation/recovery trajectory
+
+Work-block routing
+= conservative combination of both outputs and their uncertainty
+```
+
+The COG-BCI bridge pilot found feasible two-minute HRV measurement and stable
+within-person autonomic dimensions, but no robust cognitive-autonomic
+interaction or consistent incremental cognitive prediction. This does not
+establish that the systems are independent. Until a larger prospective study
+demonstrates reliable coupling, the app should report independent cognitive
+and autonomic recommendations and treat disagreement as potentially useful
+information.
+
+### Recommended Measurement Sequence
+
+For the minimum-duration cognitive protocol:
+
+```text
+90-120 seconds seated RR baseline
+2 minutes SART
+2 minutes Stroop
+2 minutes Flanker
+60 seconds seated post-test recovery
+```
+
+RR should be recorded continuously, with exact task, instruction, transition,
+and recovery boundaries retained. The six scored cognitive minutes must not be
+treated as one stationary HRV window.
+
+The three-minute SART option produces a seven-minute scored cognitive battery.
+The same baseline and recovery periods apply. Task order should follow the
+cognitive validation design: vigilance first, then counterbalanced Stroop and
+Flanker during prospective validation.
+
+### Candidate Autonomic Outputs
+
+Calculate:
+
+- task-specific HRV summaries for each two- or three-minute segment;
+- a cross-battery mobilisation or settling trajectory;
+- pre-task reserve relative to the person's longitudinal baseline;
+- post-test recovery or continuing mobilisation;
+- valid-beat, corrected-interval, detector-concordance, and artefact rates;
+- transitions between segments without crossing task boundaries.
+
+The primary short-window feature set should emphasize mean HR/NN, log RMSSD,
+SDNN/CVNN, pNN20/pNN50, Poincare SD1/SD2, and HR/NN slopes. Nonlinear features
+such as DFA or entropy should be admitted only after their reliability is
+established for the selected sensor, duration, and artefact pipeline.
+
+The candidate autonomic dimensions are:
+
+```text
+regulatory reserve/flexibility
+variability organisation
+mobilisation/recovery trajectory
+```
+
+These are dimensional descriptions of cardiac autonomic regulation. They are
+not diagnoses, direct measures of the complete sympathetic or parasympathetic
+systems, or validated autonomic zones.
+
+### Dual Recommendations
+
+| Autonomic finding | Claim-safe interpretation | Candidate support |
+|---|---|---|
+| Higher personal reserve, stable organisation, settling HR | Flexible and adequately regulated | Proceed with the planned work block |
+| Reduced reserve, rising mobilisation | Elevated physiological demand | Brief breathing/reset exercise, lower initial load, gradual ramp-up |
+| Low activation plus poor SART vigilance | Under-activation candidate | Light movement, daylight, hydration, or a shorter active task |
+| Disorganised or unstable variability | Inconsistent regulation or possible signal noise | Pause, check sensor quality, recover, and retest if appropriate |
+| Slow post-test recovery | Continuing mobilisation | Extend recovery before demanding work |
+
+Recommendations must be based primarily on deviation from a personal
+longitudinal reference distribution, not universal population HRV thresholds.
+Sensor quality, posture, movement, breathing, illness, medication, caffeine,
+temperature, and recent exercise must be recorded or controlled where
+practical.
+
+Examples of conservative combined routing include:
+
+- Regulated cognition with elevated autonomic load: permit ordinary work only
+  with reduced intensity, a shorter first block, or an earlier recovery break.
+- Overloaded cognition with preserved autonomic regulation: simplify and
+  scaffold the work rather than assuming a physiological intervention is
+  required.
+- Poor vigilance with low activation: use a gentle activation strategy before
+  reassessment.
+- Cognitive and autonomic strain together: reduce immediate demand and favour
+  recovery before a high-consequence task.
+
+The app should expose both estimates and their confidence. It should abstain
+from body recommendations when RR quality is inadequate, and from combined
+routing when either cognitive or autonomic evidence is insufficient.
+
+### Validation Requirements
+
+Before autonomic routing is used prospectively:
+
+1. Establish personal baselines across at least 7-10 valid sessions, several
+   days, and more than one time of day.
+2. Validate RR quality and short-window features for each supported sensor,
+   including the Polar H10 or another research-grade chest strap.
+3. Test task-order, posture, breathing, movement, recent exercise, and device
+   effects.
+4. Compare concurrent task segments with seated baseline and post-test
+   recovery.
+5. Test whether autonomic outputs predict independent readiness or
+   next-work-block outcomes beyond cognitive scores and context.
+6. Evaluate cognitive-autonomic disagreement rather than treating it as
+   classification error.
+7. Randomize any proposed breathing, activation, or workload-routing support
+   before claiming that it improves regulation or performance.
+
+This extension supports research on separate mind and body readiness outputs.
+It does not support medical diagnosis, treatment recommendations, or claims
+that HRV identifies a cognitive profile.
+
 ## Timing And Device Requirements
 
 All tasks depend on response timing. The implementation should:

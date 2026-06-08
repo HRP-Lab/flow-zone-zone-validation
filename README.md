@@ -31,16 +31,22 @@ creates/restores the `renv` environment and writes `renv.lock`.
 
 ## Studies
 
-This repository now contains two distinct analyses:
+This repository now contains three distinct analyses:
 
 | Study | Scope | Publication materials |
 |---|---|---|
 | ACDC pilot | Public Stroop, Flanker, and Simon discovery analysis | [ACDC methods](docs/methods.md) |
 | Paired control-vigilance study | Barzykowski et al. paired Stroop, Flanker, and SART sessions | [Standalone study package](studies/paired-control-vigilance/README.md) |
+| COG-BCI cognitive-autonomic bridge | Concurrent ECG and cognitive performance across PVT, Flanker, N-back, and MATB | [Standalone bridge study](studies/cog-bci-hrv-bridge/README.md) |
 
 The paired study has its own provenance, methods, results, interpretation,
 paper guide, reproducible runner, and tracked output artifacts. It should not
 be described as an ACDC replication.
+
+The COG-BCI bridge study tests short-window RR/HRV measurement, autonomic
+dimensions, cognitive-autonomic coupling, and incremental prediction. It is
+bridge evidence for prospective concurrent RR collection during the proposed
+SART-Stroop-Flanker protocol, not validation of that exact battery.
 
 ## Paired Study Data
 

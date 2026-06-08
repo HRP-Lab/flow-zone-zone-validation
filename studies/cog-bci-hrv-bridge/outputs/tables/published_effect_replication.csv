@@ -1,0 +1,15 @@
+domain,effect,expected_direction,median_participant_session_effect,n_participant_sessions,proportion_expected_direction,direction_supported,participants_available,replication_gate_status
+PVT time-on-task,pvt_median_rt_ms,positive,16.26657932444356,15,1.0,True,5,passed
+PVT time-on-task,mean_hr_bpm,positive,0.9060454317898263,15,0.5333333333333333,False,5,passed
+PVT time-on-task,log_rmssd,negative,-0.039532932163672055,15,0.5333333333333333,False,5,passed
+PVT time-on-task,sdnn_ms,negative,-0.9580002424691926,15,0.5333333333333333,False,5,passed
+N-back difficulty,nback_accuracy,negative,-0.020000000000000077,15,1.0,True,5,passed
+N-back difficulty,nback_throughput,negative,-0.3930600785434171,15,1.0,True,5,passed
+N-back difficulty,mean_hr_bpm,positive,1.4644781010638508,15,1.0,True,5,passed
+N-back difficulty,log_rmssd,negative,-0.018756406074319134,15,0.6,True,5,passed
+N-back difficulty,sdnn_ms,negative,-0.8897092646671242,15,0.6,True,5,passed
+MATB difficulty,matb_tracking_error,positive,0.9638572279279554,15,1.0,True,5,passed
+MATB difficulty,matb_monitoring_rt,positive,1.1882114074069248,15,1.0,True,5,passed
+MATB difficulty,mean_hr_bpm,positive,0.922748791127221,15,0.7333333333333333,True,5,passed
+MATB difficulty,log_rmssd,negative,-0.01272124104963948,15,0.5333333333333333,False,5,passed
+MATB difficulty,sdnn_ms,negative,-1.822717959402446,15,0.6,True,5,passed

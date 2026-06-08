@@ -1,0 +1,68 @@
+{
+  "git_commit": "bfe913518e4e808b59e73f7755b45b8fd2223635",
+  "python": {
+    "version": "3.12.10",
+    "implementation": "CPython",
+    "packages": {
+      "numpy": "2.4.6",
+      "pandas": "2.3.3",
+      "pyarrow": "24.0.0",
+      "scikit-learn": "1.9.0",
+      "scipy": "1.17.1",
+      "statsmodels": "0.14.6",
+      "hdbscan": "0.8.44"
+    }
+  },
+  "stages": {
+    "cog_bci_bridge_analysis": {
+      "seed": 42,
+      "participants": 5,
+      "windows": 6079,
+      "replication_gate": {
+        "passed": true,
+        "status": "passed",
+        "reason": "At least two of three published-effect domains supported.",
+        "domains_supported": 2,
+        "domains_tested": 3
+      },
+      "between_factor_analysis": {
+        "status": "not_testable",
+        "reason": "insufficient complete observations",
+        "n_observations": 5
+      },
+      "within_factor_analysis": {
+        "status": "ok",
+        "mode": "within",
+        "n_factors": 3,
+        "n_observations": 344,
+        "features": [
+          "mean_hr_bpm_within_residual",
+          "mean_nn_ms_within_residual",
+          "log_rmssd_within_residual",
+          "sdnn_ms_within_residual",
+          "cvnn_within_residual",
+          "pnn20_within_residual",
+          "pnn50_within_residual",
+          "sd1_sd2_within_residual",
+          "hr_slope_bpm_per_min_within_residual",
+          "nn_slope_ms_per_min_within_residual"
+        ]
+      },
+      "outputs": [
+        "ans_factor_loadings.csv",
+        "ans_gmm_comparison.csv",
+        "between_within_decomposition.csv",
+        "divergence_profiles.csv",
+        "ecg_inventory.csv",
+        "ecg_quality_audit.csv",
+        "feature_reliability_by_duration.csv",
+        "incremental_prediction.csv",
+        "lagged_associations.csv",
+        "negative_control_prediction.csv",
+        "published_effect_replication.csv",
+        "residualisation_diagnostics.csv",
+        "shared_modality_variance.csv"
+      ]
+    }
+  }
+}

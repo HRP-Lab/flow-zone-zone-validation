@@ -1,0 +1,83 @@
+{
+  "zenodo_record": 7413650,
+  "reference_files": [
+    {
+      "filename": "COG-BCI_info.pdf",
+      "bytes": 223785,
+      "checksum": "md5:cecae8707280dc2251b8ca6c48a7302d",
+      "url": "https://zenodo.org/api/records/7413650/files/COG-BCI_info.pdf/content",
+      "local_path": "C:\\Users\\admin\\OneDrive\\Documents\\GitHub\\flow-zone-zone-validation\\data\\raw\\cog_bci\\reference\\COG-BCI_info.pdf",
+      "verified": true
+    },
+    {
+      "filename": "triggerlist.txt",
+      "bytes": 1922,
+      "checksum": "md5:6c3b173794158d0a3298ad602e162b7a",
+      "url": "https://zenodo.org/api/records/7413650/files/triggerlist.txt/content",
+      "local_path": "C:\\Users\\admin\\OneDrive\\Documents\\GitHub\\flow-zone-zone-validation\\data\\raw\\cog_bci\\reference\\triggerlist.txt",
+      "verified": true
+    },
+    {
+      "filename": "KSS.txt",
+      "bytes": 6307,
+      "checksum": "md5:e44478cb22f7520daa88ca418f4e2a92",
+      "url": "https://zenodo.org/api/records/7413650/files/KSS.txt/content",
+      "local_path": "C:\\Users\\admin\\OneDrive\\Documents\\GitHub\\flow-zone-zone-validation\\data\\raw\\cog_bci\\reference\\KSS.txt",
+      "verified": true
+    },
+    {
+      "filename": "RSME.txt",
+      "bytes": 20550,
+      "checksum": "md5:ab2ac797cd82b3ea3e20321ce6c86c29",
+      "url": "https://zenodo.org/api/records/7413650/files/RSME.txt/content",
+      "local_path": "C:\\Users\\admin\\OneDrive\\Documents\\GitHub\\flow-zone-zone-validation\\data\\raw\\cog_bci\\reference\\RSME.txt",
+      "verified": true
+    },
+    {
+      "filename": "notebook.mat",
+      "bytes": 4651,
+      "checksum": "md5:aed8373beb94cd719eb37c49d4fa0d54",
+      "url": "https://zenodo.org/api/records/7413650/files/notebook.mat/content",
+      "local_path": "C:\\Users\\admin\\OneDrive\\Documents\\GitHub\\flow-zone-zone-validation\\data\\raw\\cog_bci\\reference\\notebook.mat",
+      "verified": true
+    }
+  ],
+  "participants": [
+    {
+      "participant_number": 2,
+      "filename": "sub-02.zip",
+      "bytes": 1077561911,
+      "checksum": "md5:f3f0b80c9752494c7e0eaba2b5cba63b",
+      "url": "https://zenodo.org/api/records/7413650/files/sub-02.zip/content",
+      "local_path": "C:\\Users\\admin\\AppData\\Local\\flowzone-cog-bci-cache\\sub-02.zip",
+      "verified": true
+    },
+    {
+      "participant_number": 3,
+      "filename": "sub-03.zip",
+      "bytes": 1091918375,
+      "checksum": "md5:3120766d0e2d65ef0299980381f4aa3e",
+      "url": "https://zenodo.org/api/records/7413650/files/sub-03.zip/content",
+      "local_path": "C:\\Users\\admin\\AppData\\Local\\flowzone-cog-bci-cache\\sub-03.zip",
+      "verified": true
+    },
+    {
+      "participant_number": 4,
+      "filename": "sub-04.zip",
+      "bytes": 1061048048,
+      "checksum": "md5:613ae1a3937261ba07ff239f80f6ebf9",
+      "url": "https://zenodo.org/api/records/7413650/files/sub-04.zip/content",
+      "local_path": "C:\\Users\\admin\\AppData\\Local\\flowzone-cog-bci-cache\\sub-04.zip",
+      "verified": true
+    },
+    {
+      "participant_number": 5,
+      "filename": "sub-05.zip",
+      "bytes": 1028766446,
+      "checksum": "md5:9395a89068a247dc1f28bee677a2522d",
+      "url": "https://zenodo.org/api/records/7413650/files/sub-05.zip/content",
+      "local_path": "C:\\Users\\admin\\AppData\\Local\\flowzone-cog-bci-cache\\sub-05.zip",
+      "verified": true
+    }
+  ]
+}

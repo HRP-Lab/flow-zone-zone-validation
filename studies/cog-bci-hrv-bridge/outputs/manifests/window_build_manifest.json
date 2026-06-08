@@ -1,0 +1,45 @@
+{
+  "participants_requested": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "processed": [
+    {
+      "participant_id": "sub-01",
+      "windows": 1242,
+      "recordings": 24,
+      "errors": 0
+    },
+    {
+      "participant_id": "sub-02",
+      "windows": 1219,
+      "recordings": 24,
+      "errors": 0
+    },
+    {
+      "participant_id": "sub-03",
+      "windows": 1217,
+      "recordings": 24,
+      "errors": 0
+    },
+    {
+      "participant_id": "sub-04",
+      "windows": 1204,
+      "recordings": 24,
+      "errors": 0
+    },
+    {
+      "participant_id": "sub-05",
+      "windows": 1197,
+      "recordings": 24,
+      "errors": 0
+    }
+  ],
+  "cleanup_archives": false,
+  "window_rows": 6079,
+  "recording_rows": 120,
+  "error_rows": 0
+}

@@ -4,6 +4,9 @@ data/raw/*
 !data/raw/acdc/
 data/raw/acdc/*
 !data/raw/acdc/.gitkeep
+data/raw/cog_bci/*
+!data/raw/cog_bci/reference/
+data/raw/cog_bci/reference/*
 data/interim/*
 !data/interim/.gitkeep
 data/processed/*
