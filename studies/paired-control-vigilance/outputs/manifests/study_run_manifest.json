@@ -1,5 +1,5 @@
 {
-  "git_commit": "c130ab439c1c25575e694edb464da3a3aa939667",
+  "git_commit": "8388637cd260a320adee362e73ba16d8cd81b9ef",
   "python": {
     "version": "3.12.10",
     "implementation": "CPython",
@@ -28,6 +28,16 @@
       "raw_sha256": "b4f04ab9b583a92f31ee45e83a27fe9c63011147560118b1b9b06ded244998fe",
       "prefix_trials": 144,
       "prefix_duration_seconds": 180.0,
+      "matched_sessions": 744,
+      "matched_participants": 456,
+      "seed": 42,
+      "bootstrap_repetitions": 5000
+    },
+    "sart_2min_validation": {
+      "raw_input": "data/raw/stroop_sart_flanker/Raw_Sart.xlsx",
+      "raw_sha256": "b4f04ab9b583a92f31ee45e83a27fe9c63011147560118b1b9b06ded244998fe",
+      "prefix_trials": 96,
+      "prefix_duration_seconds": 120.0,
       "matched_sessions": 744,
       "matched_participants": 456,
       "seed": 42,

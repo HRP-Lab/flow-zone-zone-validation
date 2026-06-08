@@ -81,6 +81,10 @@ data and is not committed.
 - The first 144 SART trials retained strong agreement with the full task:
   engagement-vigilance Spearman `r = .912`, inhibitory stability `r = .952`,
   and low-engagement balanced accuracy `0.883`.
+- The exact two-minute, 96-trial SART retained engagement-vigilance concordance
+  `.856`, inhibition concordance `.886`, and low-engagement balanced accuracy
+  `.816`. It supports a six-minute minimum protocol, with weaker one-session
+  reliability than the three-minute preferred version.
 
 The shortened-task result is internal recovery, not independent validation. A
 new prospective sample is required before clinical, occupational, routing, or

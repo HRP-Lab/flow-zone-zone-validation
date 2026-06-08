@@ -2,78 +2,78 @@
   "raw_input": "data/raw/stroop_sart_flanker/Raw_Sart.xlsx",
   "raw_sha256": "b4f04ab9b583a92f31ee45e83a27fe9c63011147560118b1b9b06ded244998fe",
   "paired_sessions_input": "data/processed/paired_vigilance_session_features.parquet",
-  "prefix_trials": 144,
-  "prefix_duration_seconds": 180.0,
+  "prefix_trials": 96,
+  "prefix_duration_seconds": 120.0,
   "matched_sessions": 744,
   "matched_participants": 456,
   "engagement_threshold": -0.5,
   "dimension_agreement": [
     {
       "metric": "engagement_vigilance",
-      "abbreviated_column": "sart_3min_engagement_index",
+      "abbreviated_column": "sart_2min_engagement_index",
       "full_column": "sart_engagement_index",
       "n_sessions": 744,
-      "pearson_r": 0.9399122566702487,
-      "spearman_r": 0.9124580227319019,
-      "lins_ccc": 0.9398523908073615,
-      "mean_bias": -0.013028162773440837,
-      "mae": 0.2590273913016073,
-      "rmse": 0.41236663209620383
+      "pearson_r": 0.8586277096546328,
+      "spearman_r": 0.8119604873894096,
+      "lins_ccc": 0.8562458207719489,
+      "mean_bias": 0.04501013272736101,
+      "mae": 0.4069275949184115,
+      "rmse": 0.619242529576271
     },
     {
       "metric": "inhibitory_stability",
-      "abbreviated_column": "sart_3min_inhibitory_stability_index",
+      "abbreviated_column": "sart_2min_inhibitory_stability_index",
       "full_column": "sart_inhibitory_stability_index",
       "n_sessions": 744,
-      "pearson_r": 0.9613858548740634,
-      "spearman_r": 0.9515291537111414,
-      "lins_ccc": 0.9610295685940217,
-      "mean_bias": 0.02498393002754173,
-      "mae": 0.19203968480629013,
-      "rmse": 0.2884428862541486
+      "pearson_r": 0.8893391094122707,
+      "spearman_r": 0.8647301730329235,
+      "lins_ccc": 0.8859523181352613,
+      "mean_bias": -0.027249702580117597,
+      "mae": 0.34649345856149527,
+      "rmse": 0.512184190877035
     }
   ],
   "within_person_agreement": [
     {
-      "predictor": "sart_3min_engagement_index",
+      "predictor": "sart_2min_engagement_index",
       "outcome": "sart_engagement_index",
       "level": "session",
-      "correlation": 0.9124580227319019,
+      "correlation": 0.8119604873894096,
       "n": 744
     },
     {
-      "predictor": "sart_3min_engagement_index",
+      "predictor": "sart_2min_engagement_index",
       "outcome": "sart_engagement_index",
       "level": "between_person",
-      "correlation": 0.9304433445168215,
+      "correlation": 0.8366046828905289,
       "n": 456
     },
     {
-      "predictor": "sart_3min_engagement_index",
+      "predictor": "sart_2min_engagement_index",
       "outcome": "sart_engagement_index",
       "level": "within_person",
-      "correlation": 0.8979751709207842,
+      "correlation": 0.7769496730618926,
       "n": 491
     },
     {
-      "predictor": "sart_3min_inhibitory_stability_index",
+      "predictor": "sart_2min_inhibitory_stability_index",
       "outcome": "sart_inhibitory_stability_index",
       "level": "session",
-      "correlation": 0.9515291537111414,
+      "correlation": 0.8647301730329235,
       "n": 744
     },
     {
-      "predictor": "sart_3min_inhibitory_stability_index",
+      "predictor": "sart_2min_inhibitory_stability_index",
       "outcome": "sart_inhibitory_stability_index",
       "level": "between_person",
-      "correlation": 0.9602805556627797,
+      "correlation": 0.8838541624942177,
       "n": 456
     },
     {
-      "predictor": "sart_3min_inhibitory_stability_index",
+      "predictor": "sart_2min_inhibitory_stability_index",
       "outcome": "sart_inhibitory_stability_index",
       "level": "within_person",
-      "correlation": 0.9304278890464233,
+      "correlation": 0.8419543148810321,
       "n": 491
     }
   ],
@@ -159,83 +159,83 @@
       "assumption": "Spearman-Brown projection under comparable independent session error"
     },
     {
-      "sart_source": "abbreviated_144",
+      "sart_source": "abbreviated_96",
       "feature": "sart_inhibitory_stability_index",
-      "single_session_icc": 0.4337422838495176,
+      "single_session_icc": 0.36698605692300257,
       "baseline_sessions": 1,
-      "projected_average_reliability": 0.4337422838495176,
+      "projected_average_reliability": 0.36698605692300257,
       "assumption": "Spearman-Brown projection under comparable independent session error"
     },
     {
-      "sart_source": "abbreviated_144",
+      "sart_source": "abbreviated_96",
       "feature": "sart_inhibitory_stability_index",
-      "single_session_icc": 0.4337422838495176,
+      "single_session_icc": 0.36698605692300257,
       "baseline_sessions": 3,
-      "projected_average_reliability": 0.6967805110977813,
+      "projected_average_reliability": 0.6349341849143396,
       "assumption": "Spearman-Brown projection under comparable independent session error"
     },
     {
-      "sart_source": "abbreviated_144",
+      "sart_source": "abbreviated_96",
       "feature": "sart_inhibitory_stability_index",
-      "single_session_icc": 0.4337422838495176,
+      "single_session_icc": 0.36698605692300257,
       "baseline_sessions": 5,
-      "projected_average_reliability": 0.7929564510174758,
+      "projected_average_reliability": 0.7435055719759989,
       "assumption": "Spearman-Brown projection under comparable independent session error"
     },
     {
-      "sart_source": "abbreviated_144",
+      "sart_source": "abbreviated_96",
       "feature": "sart_inhibitory_stability_index",
-      "single_session_icc": 0.4337422838495176,
+      "single_session_icc": 0.36698605692300257,
       "baseline_sessions": 7,
-      "projected_average_reliability": 0.8428133259107095,
+      "projected_average_reliability": 0.8023015358443331,
       "assumption": "Spearman-Brown projection under comparable independent session error"
     },
     {
-      "sart_source": "abbreviated_144",
+      "sart_source": "abbreviated_96",
       "feature": "sart_inhibitory_stability_index",
-      "single_session_icc": 0.4337422838495176,
+      "single_session_icc": 0.36698605692300257,
       "baseline_sessions": 10,
-      "projected_average_reliability": 0.8845239387353606,
+      "projected_average_reliability": 0.8528857996517307,
       "assumption": "Spearman-Brown projection under comparable independent session error"
     },
     {
-      "sart_source": "abbreviated_144",
+      "sart_source": "abbreviated_96",
       "feature": "sart_engagement_index",
-      "single_session_icc": 0.34650285227887784,
+      "single_session_icc": 0.24785976323359568,
       "baseline_sessions": 1,
-      "projected_average_reliability": 0.34650285227887784,
+      "projected_average_reliability": 0.24785976323359568,
       "assumption": "Spearman-Brown projection under comparable independent session error"
     },
     {
-      "sart_source": "abbreviated_144",
+      "sart_source": "abbreviated_96",
       "feature": "sart_engagement_index",
-      "single_session_icc": 0.34650285227887784,
+      "single_session_icc": 0.24785976323359568,
       "baseline_sessions": 3,
-      "projected_average_reliability": 0.6140018040330067,
+      "projected_average_reliability": 0.49713818436072776,
       "assumption": "Spearman-Brown projection under comparable independent session error"
     },
     {
-      "sart_source": "abbreviated_144",
+      "sart_source": "abbreviated_96",
       "feature": "sart_engagement_index",
-      "single_session_icc": 0.34650285227887784,
+      "single_session_icc": 0.24785976323359568,
       "baseline_sessions": 5,
-      "projected_average_reliability": 0.7261131504968906,
+      "projected_average_reliability": 0.6223132032797455,
       "assumption": "Spearman-Brown projection under comparable independent session error"
     },
     {
-      "sart_source": "abbreviated_144",
+      "sart_source": "abbreviated_96",
       "feature": "sart_engagement_index",
-      "single_session_icc": 0.34650285227887784,
+      "single_session_icc": 0.24785976323359568,
       "baseline_sessions": 7,
-      "projected_average_reliability": 0.7877578709065699,
+      "projected_average_reliability": 0.6975905585612584,
       "assumption": "Spearman-Brown projection under comparable independent session error"
     },
     {
-      "sart_source": "abbreviated_144",
+      "sart_source": "abbreviated_96",
       "feature": "sart_engagement_index",
-      "single_session_icc": 0.34650285227887784,
+      "single_session_icc": 0.24785976323359568,
       "baseline_sessions": 10,
-      "projected_average_reliability": 0.8413274069406942,
+      "projected_average_reliability": 0.7671924287143167,
       "assumption": "Spearman-Brown projection under comparable independent session error"
     }
   ],
@@ -243,20 +243,20 @@
     "n_sessions": 744,
     "threshold": -0.5,
     "reference_positive_rate": 0.28225806451612906,
-    "abbreviated_positive_rate": 0.28763440860215056,
-    "sensitivity": 0.8380952380952381,
-    "specificity": 0.9288389513108615,
-    "balanced_accuracy": 0.8834670947030498,
-    "cohen_kappa": 0.7625279285030322,
-    "true_positive": 176,
-    "true_negative": 496,
-    "false_positive": 38,
-    "false_negative": 34
+    "abbreviated_positive_rate": 0.29435483870967744,
+    "sensitivity": 0.7476190476190476,
+    "specificity": 0.8838951310861424,
+    "balanced_accuracy": 0.8157570893525949,
+    "cohen_kappa": 0.6234088628320922,
+    "true_positive": 157,
+    "true_negative": 472,
+    "false_positive": 62,
+    "false_negative": 53
   },
   "outputs": {
-    "report": "studies/paired-control-vigilance/outputs/reports/sart_3min_validation.md",
+    "report": "studies/paired-control-vigilance/outputs/reports/sart_2min_validation.md",
     "tables": "studies/paired-control-vigilance/outputs/tables",
     "figures": "studies/paired-control-vigilance/outputs/figures",
-    "session_data": "data/processed/sart_3min_validation_sessions.parquet"
+    "session_data": "data/processed/sart_2min_validation_sessions.parquet"
   }
 }

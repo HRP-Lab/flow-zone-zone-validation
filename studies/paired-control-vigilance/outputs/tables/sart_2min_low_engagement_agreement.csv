@@ -1,0 +1,2 @@
+n_sessions,threshold,reference_positive_rate,abbreviated_positive_rate,sensitivity,specificity,balanced_accuracy,cohen_kappa,true_positive,true_negative,false_positive,false_negative
+744,-0.5,0.28225806451612906,0.29435483870967744,0.7476190476190476,0.8838951310861424,0.8157570893525949,0.6234088628320922,157,472,62,53

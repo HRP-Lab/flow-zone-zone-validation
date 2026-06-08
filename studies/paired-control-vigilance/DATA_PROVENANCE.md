@@ -70,7 +70,7 @@ ambiguous assignments were excluded.
 ## Secondary-Analysis Boundary
 
 The original study was not designed to validate the present mixture taxonomy
-or a seven-minute classifier. The current work is an exploratory secondary
+or a six-/seven-minute classifier. The current work is an exploratory secondary
 analysis. Selection into laboratory retests was partly based on inhibitory
 control performance in the source study, so repeat-session estimates should not
 be treated as population-representative without qualification.

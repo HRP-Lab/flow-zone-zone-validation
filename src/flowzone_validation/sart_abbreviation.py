@@ -374,6 +374,43 @@ def binary_threshold_agreement(
     }
 
 
+def project_average_reliability(
+    icc: pd.DataFrame,
+    session_counts: tuple[int, ...] = (1, 3, 5, 7, 10),
+) -> pd.DataFrame:
+    """Project reliability of an average across repeated comparable sessions."""
+    required = {"sart_source", "feature", "icc_1"}
+    missing = required - set(icc.columns)
+    if missing:
+        raise ValueError(f"Missing ICC columns: {sorted(missing)}")
+    if not session_counts or any(count <= 0 for count in session_counts):
+        raise ValueError("session_counts must contain positive integers")
+    rows = []
+    for row in icc.itertuples():
+        for sessions in session_counts:
+            single_session_icc = float(row.icc_1)
+            denominator = 1 + (sessions - 1) * single_session_icc
+            projected = (
+                sessions * single_session_icc / denominator
+                if denominator > 0
+                else np.nan
+            )
+            rows.append(
+                {
+                    "sart_source": row.sart_source,
+                    "feature": row.feature,
+                    "single_session_icc": single_session_icc,
+                    "baseline_sessions": sessions,
+                    "projected_average_reliability": projected,
+                    "assumption": (
+                        "Spearman-Brown projection under comparable "
+                        "independent session error"
+                    ),
+                }
+            )
+    return pd.DataFrame(rows)
+
+
 def build_match_audit(
     trials: pd.DataFrame,
     sessions: pd.DataFrame,

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the first 144 SART trials against the full 225-trial session."""
+"""Validate an abbreviated SART prefix against the full 225-trial session."""
 
 from __future__ import annotations
 
@@ -35,6 +35,7 @@ from flowzone_validation.sart_abbreviation import (
     build_match_audit,
     match_sart_sessions,
     prepare_sart_trials,
+    project_average_reliability,
     score_sart_prefix,
     summarize_sart_trials,
 )
@@ -91,11 +92,13 @@ def parse_args() -> argparse.Namespace:
         default=study / "outputs/manifests/study_run_manifest.json",
     )
     parser.add_argument("--prefix-trials", type=int, default=144)
+    parser.add_argument("--analysis-stem", default="sart_3min")
+    parser.add_argument("--duration-label", default="Three-minute")
     parser.add_argument(
         "--sensitivity-trials",
         type=int,
         nargs="+",
-        default=[90, 120, 144, 180],
+        default=[90, 96, 120, 144, 180],
     )
     parser.add_argument("--engagement-threshold", type=float, default=-0.5)
     parser.add_argument("--bootstrap-repetitions", type=int, default=5000)
@@ -200,11 +203,15 @@ def _rename_raw_columns(frame: pd.DataFrame, label: str) -> pd.DataFrame:
 def _prediction_tables(
     full: pd.DataFrame,
     abbreviated: pd.DataFrame,
+    abbreviated_source: str,
     seed: int,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     control_rows = []
     profile_rows = []
-    for source, frame in (("full_225", full), ("abbreviated_144", abbreviated)):
+    for source, frame in (
+        ("full_225", full),
+        (abbreviated_source, abbreviated),
+    ):
         control = grouped_control_prediction(frame, seed=seed)
         control = control[
             control["model"].isin(
@@ -230,6 +237,8 @@ def _prediction_tables(
 def _plot_agreement(
     frame: pd.DataFrame,
     output: Path,
+    abbreviated_stem: str,
+    prefix_trials: int,
 ) -> None:
     import matplotlib
 
@@ -241,12 +250,12 @@ def _plot_agreement(
     pairs = [
         (
             "sart_engagement_index",
-            "sart_3min_engagement_index",
+            f"{abbreviated_stem}_engagement_index",
             "Engagement-vigilance",
         ),
         (
             "sart_inhibitory_stability_index",
-            "sart_3min_inhibitory_stability_index",
+            f"{abbreviated_stem}_inhibitory_stability_index",
             "Inhibitory stability",
         ),
     ]
@@ -273,7 +282,7 @@ def _plot_agreement(
         axis.set(
             title=title,
             xlabel="Full 225-trial score",
-            ylabel="First-144-trial score",
+            ylabel=f"First-{prefix_trials}-trial score",
         )
     figure.tight_layout()
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -281,7 +290,12 @@ def _plot_agreement(
     plt.close(figure)
 
 
-def _plot_sensitivity(frame: pd.DataFrame, output: Path) -> None:
+def _plot_sensitivity(
+    frame: pd.DataFrame,
+    output: Path,
+    *,
+    selected_minutes: float,
+) -> None:
     import matplotlib
 
     matplotlib.use("Agg")
@@ -297,7 +311,12 @@ def _plot_sensitivity(frame: pd.DataFrame, output: Path) -> None:
         marker="o",
         ax=axes[0],
     )
-    axes[0].axvline(3, color="grey", linestyle="--", linewidth=1)
+    axes[0].axvline(
+        selected_minutes,
+        color="grey",
+        linestyle="--",
+        linewidth=1,
+    )
     axes[0].set(
         ylim=(0, 1),
         title="Score association with full SART",
@@ -313,7 +332,12 @@ def _plot_sensitivity(frame: pd.DataFrame, output: Path) -> None:
         marker="o",
         color="#C55A11",
     )
-    axes[1].axvline(3, color="grey", linestyle="--", linewidth=1)
+    axes[1].axvline(
+        selected_minutes,
+        color="grey",
+        linestyle="--",
+        linewidth=1,
+    )
     axes[1].axhline(0.75, color="grey", linestyle=":", linewidth=1)
     axes[1].set(
         ylim=(0.5, 1),
@@ -346,10 +370,16 @@ def _render_report(
     association_rates: pd.DataFrame,
     associations: pd.DataFrame,
     icc: pd.DataFrame,
+    baseline_reliability: pd.DataFrame,
     prediction: pd.DataFrame,
     profile_prediction: pd.DataFrame,
     sensitivity: pd.DataFrame,
     prefix_row: pd.Series,
+    *,
+    abbreviated_source: str,
+    duration_label: str,
+    prefix_trials: int,
+    duration_seconds: float,
 ) -> str:
     audit_row = audit.iloc[0]
     engagement = dimension_agreement[
@@ -362,8 +392,12 @@ def _render_report(
         association_summary["sart_source"].eq("full_225")
     ].iloc[0]
     short_assoc = association_summary[
-        association_summary["sart_source"].eq("abbreviated_144")
+        association_summary["sart_source"].eq(abbreviated_source)
     ].iloc[0]
+    duration_lower = duration_label.lower()
+    duration_minutes = duration_seconds / 60
+    go_trials = int(prefix_row["sart_go_count_raw"])
+    nogo_trials = int(prefix_row["sart_nogo_count_raw"])
     engagement_supported = (
         engagement["spearman_r"] >= 0.80
         and engagement["lins_ccc"] >= 0.75
@@ -374,17 +408,18 @@ def _render_report(
         and inhibition["lins_ccc"] >= 0.65
     )
     lines = [
-        "# Three-Minute SART Validation",
+        f"# {duration_label.title()} SART Validation",
         "",
-        "> This is an internal abbreviation analysis. The first 144 trials are "
-        "nested within the full 225-trial SART and are not an independent "
-        "validation sample.",
+        f"> This is an internal abbreviation analysis. The first "
+        f"{prefix_trials} trials are nested within the full 225-trial SART "
+        "and are not an independent validation sample.",
         "",
         "## 1. Purpose",
         "",
-        "This analysis tests whether the first 144 trials (three minutes at "
-        "1250 ms per trial) preserve the paired study's full-session SART "
-        "engagement-vigilance and inhibitory-stability information.",
+        f"This analysis tests whether the first {prefix_trials} trials "
+        f"({duration_minutes:g} minutes at 1250 ms per trial) preserve the "
+        "paired study's full-session SART engagement-vigilance and "
+        "inhibitory-stability information.",
         "",
         "## 2. Raw linkage and integrity",
         "",
@@ -419,15 +454,16 @@ def _render_report(
     lines.extend(
         [
             "",
-            "## 3. Three-minute prefix",
+            f"## 3. {duration_label.title()} prefix",
             "",
             f"- Trials: {int(prefix_row['sart_trial_count_raw'])}.",
-            f"- Go trials: {int(prefix_row['sart_go_count_raw'])}.",
-            f"- NoGo trials: {int(prefix_row['sart_nogo_count_raw'])}.",
+            f"- Go trials: {go_trials}.",
+            f"- NoGo trials: {nogo_trials}.",
             "- The source used one fixed semi-random sequence. Every session "
-            "therefore has the same 131/13 composition.",
+            f"therefore has the same {go_trials}/{nogo_trials} composition.",
             "",
-            "A redesigned 128/16 sequence is not validated by this analysis.",
+            "A redesigned or rebalanced sequence is not validated by this "
+            "analysis.",
             "",
             "## 4. Raw metric agreement",
             "",
@@ -489,7 +525,7 @@ def _render_report(
             "",
             f"- Full-session low-engagement rate: "
             f"{threshold['reference_positive_rate']:.1%}.",
-            f"- Three-minute low-engagement rate: "
+            f"- {duration_label.title()} low-engagement rate: "
             f"{threshold['abbreviated_positive_rate']:.1%}.",
             f"- Sensitivity: {threshold['sensitivity']:.3f}.",
             f"- Specificity: {threshold['specificity']:.3f}.",
@@ -499,7 +535,7 @@ def _render_report(
             "## 7. Control-profile association",
             "",
             f"- Full SART Cramer's V: {full_assoc['cramers_v']:.3f}.",
-            f"- Three-minute SART Cramer's V: "
+            f"- {duration_label.title()} SART Cramer's V: "
             f"{short_assoc['cramers_v']:.3f}.",
             "",
             "| SART source | Neutral profile | Low-engagement rate |",
@@ -540,8 +576,30 @@ def _render_report(
             f"| {row.sart_source} | {row.feature} | "
             f"{_fmt(row.icc_1)} | {row.interpretation} |"
         )
+    abbreviated_reliability = baseline_reliability[
+        baseline_reliability["sart_source"].eq(abbreviated_source)
+    ]
     lines.extend(
         [
+            "",
+            "Projected reliability of a personal baseline formed by averaging "
+            "comparable repeated sessions:",
+            "",
+            "| Dimension | Sessions | Projected reliability |",
+            "|---|---:|---:|",
+        ]
+    )
+    for row in abbreviated_reliability.itertuples():
+        lines.append(
+            f"| {row.feature} | {row.baseline_sessions} | "
+            f"{_fmt(row.projected_average_reliability)} |"
+        )
+    lines.extend(
+        [
+            "",
+            "These Spearman-Brown projections are planning estimates, not "
+            "observed week-long reliability. They assume comparable sessions, "
+            "independent measurement error, and a stable person baseline.",
             "",
             "## 10. Participant-grouped prediction",
             "",
@@ -593,10 +651,12 @@ def _render_report(
             "",
             "## 12. Interpretation",
             "",
-            "The three-minute prefix has internal support for the dimensions "
+            f"The {duration_lower} prefix has internal support for the "
+            "dimensions "
             "that pass the stated agreement gates. "
             "Commission-based inhibitory stability is expected to be less "
-            "precise because the prefix contains only 13 NoGo trials.",
+            f"precise because the prefix contains only {nogo_trials} NoGo "
+            "trials.",
             "",
             "Even a positive result is internal abbreviation evidence: the "
             "prefix is part of the full task, uses the same fixed sequence, "
@@ -607,7 +667,8 @@ def _render_report(
             "## 13. Claim-safe conclusion",
             "",
             "This analysis estimates how much of the full paired-study SART "
-            "signal is retained in its first three minutes. It can support "
+            f"signal is retained in its first {duration_minutes:g} minutes. "
+            "It can support "
             "selection of an abbreviated research protocol, but it does not "
             "validate under-activation, physiological arousal, work-readiness "
             "routing, or a production classifier.",
@@ -618,6 +679,16 @@ def _render_report(
 
 def main() -> None:
     args = parse_args()
+    if args.prefix_trials <= 0 or args.prefix_trials > 225:
+        raise ValueError("--prefix-trials must be between 1 and 225")
+    abbreviated_stem = args.analysis_stem
+    abbreviated_source = f"abbreviated_{args.prefix_trials}"
+    abbreviated_engagement = f"{abbreviated_stem}_engagement_index"
+    abbreviated_inhibition = (
+        f"{abbreviated_stem}_inhibitory_stability_index"
+    )
+    duration_seconds = args.prefix_trials * 1.25
+    duration_minutes = duration_seconds / 60
     if not args.sessions.exists():
         raise FileNotFoundError(
             f"Paired session features are missing: {args.sessions}"
@@ -662,7 +733,7 @@ def main() -> None:
     prefix_scored = score_sart_prefix(
         prefix_summary,
         metadata,
-        label="sart_3min",
+        label=abbreviated_stem,
     )
 
     raw_full = _rename_raw_columns(full_scored, "full")
@@ -708,12 +779,8 @@ def main() -> None:
     # Preserve readable composite names after the raw-column namespacing.
     validation = validation.rename(
         columns={
-            "short_sart_3min_engagement_index": (
-                "sart_3min_engagement_index"
-            ),
-            "short_sart_3min_inhibitory_stability_index": (
-                "sart_3min_inhibitory_stability_index"
-            ),
+            f"short_{abbreviated_engagement}": abbreviated_engagement,
+            f"short_{abbreviated_inhibition}": abbreviated_inhibition,
             "full_sart_full_raw_engagement_index": (
                 "sart_full_raw_engagement_index"
             ),
@@ -762,12 +829,12 @@ def main() -> None:
         [
             (
                 "engagement_vigilance",
-                "sart_3min_engagement_index",
+                abbreviated_engagement,
                 "sart_engagement_index",
             ),
             (
                 "inhibitory_stability",
-                "sart_3min_inhibitory_stability_index",
+                abbreviated_inhibition,
                 "sart_inhibitory_stability_index",
             ),
         ],
@@ -776,17 +843,17 @@ def main() -> None:
         validation,
         [
             (
-                "sart_3min_engagement_index",
+                abbreviated_engagement,
                 "sart_engagement_index",
             ),
             (
-                "sart_3min_inhibitory_stability_index",
+                abbreviated_inhibition,
                 "sart_inhibitory_stability_index",
             ),
         ],
     )
     threshold = binary_threshold_agreement(
-        validation["sart_3min_engagement_index"],
+        validation[abbreviated_engagement],
         validation["sart_engagement_index"],
         threshold=args.engagement_threshold,
     )
@@ -794,17 +861,17 @@ def main() -> None:
     full_model = validation.copy()
     abbreviated_model = validation.copy()
     abbreviated_model["sart_engagement_index"] = abbreviated_model[
-        "sart_3min_engagement_index"
+        abbreviated_engagement
     ]
     abbreviated_model["sart_inhibitory_stability_index"] = abbreviated_model[
-        "sart_3min_inhibitory_stability_index"
+        abbreviated_inhibition
     ]
     association_rows = []
     rate_rows = []
     odds_rows = []
     for source, frame in (
         ("full_225", full_model),
-        ("abbreviated_144", abbreviated_model),
+        (abbreviated_source, abbreviated_model),
     ):
         result = control_vigilance_association(
             frame,
@@ -828,7 +895,7 @@ def main() -> None:
     association_decomposition = []
     for source, frame in (
         ("full_225", full_model),
-        ("abbreviated_144", abbreviated_model),
+        (abbreviated_source, abbreviated_model),
     ):
         table = decompose_associations(
             frame,
@@ -847,7 +914,7 @@ def main() -> None:
     icc_rows = []
     for source, frame in (
         ("full_225", full_model),
-        ("abbreviated_144", abbreviated_model),
+        (abbreviated_source, abbreviated_model),
     ):
         table = one_way_icc(
             frame,
@@ -859,9 +926,11 @@ def main() -> None:
         table.insert(0, "sart_source", source)
         icc_rows.append(table)
     icc = pd.concat(icc_rows, ignore_index=True)
+    baseline_reliability = project_average_reliability(icc)
     prediction, profile_prediction = _prediction_tables(
         full_model,
         abbreviated_model,
+        abbreviated_source,
         args.seed,
     )
 
@@ -928,51 +997,65 @@ def main() -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
     args.figure_dir.mkdir(parents=True, exist_ok=True)
     write_table(validation, args.session_output)
-    write_table(audit, args.output_dir / "sart_3min_match_audit.csv")
+    write_table(
+        audit,
+        args.output_dir / f"{abbreviated_stem}_match_audit.csv",
+    )
     write_table(
         integrity,
-        args.output_dir / "sart_3min_source_integrity.csv",
+        args.output_dir / f"{abbreviated_stem}_source_integrity.csv",
     )
     write_table(
         metric_agreement,
-        args.output_dir / "sart_3min_metric_agreement.csv",
+        args.output_dir / f"{abbreviated_stem}_metric_agreement.csv",
     )
     write_table(
         dimension_agreement,
-        args.output_dir / "sart_3min_dimension_agreement.csv",
+        args.output_dir / f"{abbreviated_stem}_dimension_agreement.csv",
     )
     write_table(
         within_person_agreement,
-        args.output_dir / "sart_3min_within_person_agreement.csv",
+        args.output_dir
+        / f"{abbreviated_stem}_within_person_agreement.csv",
     )
     write_table(
         pd.DataFrame([threshold]),
-        args.output_dir / "sart_3min_low_engagement_agreement.csv",
+        args.output_dir
+        / f"{abbreviated_stem}_low_engagement_agreement.csv",
     )
     write_table(
         association_summary,
-        args.output_dir / "sart_3min_control_association.csv",
+        args.output_dir / f"{abbreviated_stem}_control_association.csv",
     )
     write_table(
         association_rates,
-        args.output_dir / "sart_3min_control_profile_rates.csv",
+        args.output_dir / f"{abbreviated_stem}_control_profile_rates.csv",
     )
     write_table(
         association_odds,
-        args.output_dir / "sart_3min_control_profile_odds.csv",
+        args.output_dir / f"{abbreviated_stem}_control_profile_odds.csv",
     )
     write_table(
         associations,
-        args.output_dir / "sart_3min_association_decomposition.csv",
+        args.output_dir
+        / f"{abbreviated_stem}_association_decomposition.csv",
     )
-    write_table(icc, args.output_dir / "sart_3min_icc_comparison.csv")
+    write_table(
+        icc,
+        args.output_dir / f"{abbreviated_stem}_icc_comparison.csv",
+    )
+    write_table(
+        baseline_reliability,
+        args.output_dir
+        / f"{abbreviated_stem}_baseline_reliability_projection.csv",
+    )
     write_table(
         prediction,
-        args.output_dir / "sart_3min_prediction_comparison.csv",
+        args.output_dir / f"{abbreviated_stem}_prediction_comparison.csv",
     )
     write_table(
         profile_prediction,
-        args.output_dir / "sart_3min_profile_prediction.csv",
+        args.output_dir / f"{abbreviated_stem}_profile_prediction.csv",
     )
     write_table(
         sensitivity,
@@ -980,11 +1063,19 @@ def main() -> None:
     )
     _plot_agreement(
         validation,
-        args.figure_dir / "sart_3min_score_agreement.png",
+        args.figure_dir / f"{abbreviated_stem}_score_agreement.png",
+        abbreviated_stem,
+        args.prefix_trials,
     )
     _plot_sensitivity(
         sensitivity,
-        args.figure_dir / "sart_abbreviation_sensitivity.png",
+        args.figure_dir
+        / (
+            "sart_abbreviation_sensitivity.png"
+            if abbreviated_stem == "sart_3min"
+            else f"{abbreviated_stem}_abbreviation_sensitivity.png"
+        ),
+        selected_minutes=duration_minutes,
     )
     prefix_row = prefix_scored.iloc[0]
     report = _render_report(
@@ -998,10 +1089,15 @@ def main() -> None:
         association_rates,
         associations,
         icc,
+        baseline_reliability,
         prediction,
         profile_prediction,
         sensitivity,
         prefix_row,
+        abbreviated_source=abbreviated_source,
+        duration_label=args.duration_label,
+        prefix_trials=args.prefix_trials,
+        duration_seconds=duration_seconds,
     )
     write_text(report, args.report)
 
@@ -1010,12 +1106,15 @@ def main() -> None:
         "raw_sha256": _sha256(args.raw),
         "paired_sessions_input": _portable_path(args.sessions),
         "prefix_trials": args.prefix_trials,
-        "prefix_duration_seconds": args.prefix_trials * 1.25,
+        "prefix_duration_seconds": duration_seconds,
         "matched_sessions": len(validation),
         "matched_participants": validation["participant_id"].nunique(),
         "engagement_threshold": args.engagement_threshold,
         "dimension_agreement": dimension_agreement.to_dict(orient="records"),
         "within_person_agreement": within_person_agreement.to_dict(
+            orient="records"
+        ),
+        "baseline_reliability_projection": baseline_reliability.to_dict(
             orient="records"
         ),
         "low_engagement_agreement": threshold,
@@ -1030,7 +1129,7 @@ def main() -> None:
     update_run_manifest(
         args.manifest,
         ROOT,
-        "sart_3min_validation",
+        f"{abbreviated_stem}_validation",
         {
             "raw_input": _portable_path(args.raw),
             "raw_sha256": metrics["raw_sha256"],

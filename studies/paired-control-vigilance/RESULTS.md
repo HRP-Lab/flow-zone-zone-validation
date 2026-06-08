@@ -153,11 +153,38 @@ engagement and `.986` for inhibition, with low-engagement balanced accuracy
 `.933`. Three minutes is therefore a defensible time/fidelity compromise, not
 a lossless replacement.
 
+## Two-Minute SART
+
+The exact two-minute source prefix contained 96 trials: 88 Go and 8 NoGo. The
+same 744 matched sessions from 456 participants were evaluated.
+
+| Dimension | Spearman correlation | Lin concordance | Between-person correlation | Within-person correlation |
+|---|---:|---:|---:|---:|
+| Engagement-vigilance | .812 | .856 | .837 | .777 |
+| Inhibitory stability | .865 | .886 | .884 | .842 |
+
+The low-engagement threshold showed sensitivity `.748`, specificity `.884`,
+balanced accuracy `.816`, and kappa `.623`. The abbreviated control-profile
+association remained substantial but attenuated: Cramer's V was `.306`,
+compared with `.329` for the full SART.
+
+Repeat-session engagement ICC declined from `.391` for the full SART and `.347`
+for the three-minute prefix to `.248` for the two-minute prefix. Inhibitory
+stability ICC was `.367`, compared with `.491` and `.434`. Engagement-only
+prediction of task-active efficacy retained `R2 = .090`, versus `.128` for the
+full SART and `.109` for three minutes.
+
+The two-minute prefix passed the exploratory agreement gates. It supports a
+six-minute research battery when interpreted probabilistically and alongside a
+longitudinal personal baseline. It is not as strong as the three-minute version
+for a single-session threshold decision.
+
 ## Claim-Safe Result
 
 This dataset supports a reproducible four-component statistical description of
 paired conflict-task performance and a related but non-identical SART
-engagement dimension. It also supports prospective testing of a seven-minute
-protocol. It does not establish that the profiles are discrete cognitive
+engagement dimension. It also supports prospective testing of a six-minute
+minimum protocol and a seven-minute preferred protocol. It does not establish
+that the profiles are discrete cognitive
 states, validate intervention routing, or provide independent evidence for a
 deployable classifier.

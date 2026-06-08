@@ -231,15 +231,15 @@ def _render_report(
     lines.extend(
         [
             "",
-            "## Conservative seven-minute configuration",
+            "## Conservative six-minute configuration",
             "",
             "The operational candidate is approximately:",
             "",
             "```text",
-            "3-minute vigilance probe",
+            "2-minute source-prefix SART",
             "+ 2-minute Stroop",
             "+ 2-minute Flanker",
-            "= approximately 7 minutes",
+            "= approximately 6 minutes",
             "```",
             "",
             f"Its four-profile balanced accuracy was "
@@ -285,7 +285,7 @@ def _render_report(
             "",
             "## Interpretation",
             "",
-            "The seven-minute protocol is feasible for a research prototype. "
+            "The six-minute protocol is feasible for a research prototype. "
             "Combined prefixes materially outperform either task alone and "
             "cross the provisional 0.70 balanced-accuracy threshold. However, "
             "the result is an internal recovery analysis because full-session "
@@ -301,7 +301,8 @@ def _render_report(
             "",
             "```text",
             "20-30 second context check",
-            "3-minute PVT-like vigilance probe",
+            "2-minute source-prefix SART; use 3 minutes when higher "
+            "single-session fidelity is required",
             "2-minute Stroop, target >=80 and minimum 60 scored trials",
             "2-minute Flanker, conservative target 44 scored trials",
             "probabilistic four-profile control output",

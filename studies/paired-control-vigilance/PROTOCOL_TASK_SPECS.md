@@ -3,14 +3,18 @@
 ## Purpose And Status
 
 This document defines candidate three-task batteries suggested by the paired
-Stroop-Flanker-SART study. The vigilance task can be SART or PVT-like:
+Stroop-Flanker-SART study. The minimum-duration SART battery is:
 
 ```text
-3-minute abbreviated SART or PVT-like vigilance probe
+2-minute abbreviated SART
 + 2-minute colour-word Stroop
 + 2-minute Eriksen Flanker
-= 7 minutes of scored testing
+= 6 minutes of scored testing
 ```
+
+The three-minute SART remains the preferred higher-fidelity option, producing
+a seven-minute scored battery. A PVT-like vigilance probe remains an
+alternative requiring separate prospective validation.
 
 The Stroop and Flanker specifications are grounded in the source tasks and the
 short-prefix recovery analysis. SART is the vigilance/inhibition task directly
@@ -25,7 +29,7 @@ device specification, diagnostic test, or validated intervention router.
 
 | Item | Candidate specification |
 |---|---|
-| Scored duration | Approximately 7 minutes |
+| Scored duration | Approximately 6 minutes with the minimum SART; 7 minutes with the preferred SART |
 | Context check | Optional 20-30 seconds before testing; sleep, fatigue, stress, caffeine, illness, medication change, interruptions |
 | Operational order | Vigilance probe, Stroop, Flanker |
 | Validation order | Vigilance probe first; counterbalance Stroop and Flanker order to quantify order effects |
@@ -47,6 +51,7 @@ short reminder and invoke practice only after a mapping error or long gap.
 | Option | Main advantage | Main limitation | Scored battery duration |
 |---|---|---|---:|
 | Full source-compatible SART | Direct continuity with the paired study and its engagement/inhibitory-stability findings | Longer than the proposed seven-minute battery | About 8 min 41 sec |
+| Two-minute source-prefix SART | Produces a clean six-minute battery and passed the internal abbreviation gates | Only 8 NoGo trials; weaker single-session reliability and low-engagement sensitivity than three minutes | 6 min |
 | Three-minute source-prefix SART | Preserves the study's Go/NoGo construct within seven minutes and now has strong internal abbreviation evidence | Contains only 13 NoGo trials and remains nested within the full task | 7 min |
 | Three-minute PVT-B | Better-established three-minute alertness and sleep-loss probe with low executive demand | Not present in this dataset; does not directly measure response inhibition | 7 min |
 
@@ -64,8 +69,9 @@ Does abbreviated SART retain the full SART engagement and inhibition signals?
 Which task better predicts an independent next-work-block outcome?
 ```
 
-Do not split three minutes between SART and PVT. Each would then contain too
-little evidence, especially for SART NoGo errors and PVT tail/lapse measures.
+Do not split two or three minutes between SART and PVT. Each would then contain
+too little evidence, especially for SART NoGo errors and PVT tail/lapse
+measures.
 
 ## Task 1A: Sustained Attention To Response Task
 
@@ -96,7 +102,39 @@ This is the closest candidate to the task used in the paired study and is the
 preferred version when replication fidelity matters more than a strict
 seven-minute total.
 
-### Three-Minute Abbreviated Design
+### Two-Minute Minimum Design
+
+| Element | Source-prefix specification |
+|---|---|
+| Duration | 120 seconds |
+| Main trials | 96 total trials at 1250 ms SOA |
+| Composition | 88 Go and 8 NoGo trials |
+| Sequence | The first 96 trials of the source study's fixed semi-random sequence |
+| Stimulus and mask | Preserve the 250 ms stimulus and 900 ms mask |
+| Practice | 18 trials at onboarding; brief reminder on repeat use |
+
+Internal validation used 744 sessions from 456 participants:
+
+| Result | Engagement-vigilance | Inhibitory stability |
+|---|---:|---:|
+| Spearman correlation with full SART | .812 | .865 |
+| Lin concordance with full SART | .856 | .886 |
+| Between-person correlation with full SART | .837 | .884 |
+| Within-person correlation with full SART | .777 | .842 |
+
+Low-engagement classification achieved sensitivity `.748`, specificity `.884`,
+balanced accuracy `.816`, and kappa `.623` against the full SART. Cramer's V
+for association with the neutral control profiles was `.306`, compared with
+`.329` for the full SART.
+
+The two-minute prefix passed the post hoc abbreviation gates and is supported
+as a **minimum-duration research candidate**. It is less suitable for a
+high-confidence one-off decision: engagement ICC fell from `.391` for the full
+task to `.248`, and the prefix contains only eight NoGo trials. Its strongest
+use is as a probabilistic vigilance measure combined with repeated personal
+baselines, uncertainty reporting, and abstention near decision thresholds.
+
+### Three-Minute Preferred Design
 
 | Element | Source-prefix specification |
 |---|---|
@@ -131,16 +169,19 @@ The duration sensitivity analysis found:
 | Duration | Trials | Go/NoGo | Engagement concordance | Inhibition concordance | Low-engagement balanced accuracy |
 |---|---:|---:|---:|---:|---:|
 | 1m52.5s | 90 | 84/6 | .844 | .874 | .808 |
+| 2m00s | 96 | 88/8 | .856 | .886 | .816 |
 | 2m30s | 120 | 109/11 | .922 | .930 | .871 |
 | 3m00s | 144 | 131/13 | .940 | .961 | .883 |
 | 3m45s | 180 | 161/19 | .975 | .986 | .933 |
 
-Three minutes is a defensible time/fidelity compromise. Use 3m45s when maximum
-agreement is more important than keeping the scored battery to seven minutes.
+Two minutes is the defensible minimum for a clean six-minute battery. Three
+minutes is preferred when stronger single-session fidelity is worth one extra
+minute. Use 3m45s when maximum agreement is more important than brevity.
 
 ### Sequence Constraints
 
-- For direct continuity, use the versioned first-144 source sequence.
+- For direct continuity, use the versioned first-96 or first-144 source
+  sequence matching the selected task version.
 - For a redesigned sequence, balance digits and NoGo spacing, then validate it
   independently against the source-prefix and full SART.
 - Use a fixed set of versioned sequences or save the random seed.
@@ -195,14 +236,15 @@ RT distribution tails
 ```
 
 The paired study and abbreviation analysis support both composite dimensions
-in the source-compatible 144-trial prefix. Repeat-session ICC was modestly
-attenuated relative to the full SART, and downstream four-profile prediction
-was weaker, so the versions should retain separate norms and model versions.
+in the source-compatible 96- and 144-trial prefixes. Attenuation is larger for
+the 96-trial version, so each duration must retain separate norms, thresholds,
+and model versions.
 
 ### Provisional Quality Gates
 
 - Full block completion without backgrounding or timing failure.
-- All 13 source-prefix NoGo trials are presented.
+- All 8 or 13 source-prefix NoGo trials are presented, according to the
+  versioned duration.
 - NoGo commission rate is reported with its denominator and uncertainty.
 - Go RT variability has enough valid Go responses after exclusions.
 - A comprehension failure or near-universal responding/nonresponding triggers
@@ -501,10 +543,33 @@ Stroop + Flanker
   -> probabilities for neutral task-active control profiles
 
 Longitudinal history
-  -> deviation from the person's own reference distribution
+  -> stable person baseline plus deviation from that reference distribution
 ```
 
 The app should not collapse these immediately into a single state label.
+The conceptual `4 x 2` grid should be represented as the joint distribution of
+four task-active control probabilities and a continuous vigilance score with
+an optional low/preserved engagement summary. It is not yet a validated
+eight-class classifier.
+
+For the two-minute SART, collect 7-10 valid baseline sessions across at least
+one week, including more than one time of day where feasible. Store:
+
+```text
+person-level control-profile propensity
+person-level vigilance mean and dispersion
+current control-profile deviation
+current vigilance deviation
+population-relative scores
+measurement uncertainty
+```
+
+The observed two-minute engagement ICC (`.248`) projects to approximately
+`.70` reliability for a seven-session average and `.77` for a ten-session
+average under Spearman-Brown assumptions. Inhibitory stability (`ICC = .367`)
+projects to approximately `.80` and `.85`. These are design calculations, not
+direct evidence that a one-week baseline is stable across weeks.
+
 Recommended output fields are:
 
 ```text

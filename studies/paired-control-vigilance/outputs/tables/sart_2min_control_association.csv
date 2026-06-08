@@ -1,0 +1,3 @@
+sart_source,n_sessions,n_participants,engagement_threshold,chi_square,degrees_freedom,p_value,cramers_v,bootstrap_repetitions
+full_225,744,456,-0.5,80.71915209575799,3,2.1516464515552705e-17,0.32938349078190715,5000
+abbreviated_96,744,456,-0.5,69.69937989040838,3,4.950266429082881e-15,0.3060750924500242,5000

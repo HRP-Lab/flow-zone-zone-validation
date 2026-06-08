@@ -27,15 +27,15 @@
 | stroop_2min | 101 |  | 0.582 | 0.564 | 0.484 | 0.789 |
 | flanker_44 |  | 44 | 0.555 | 0.534 | 0.409 | 0.755 |
 
-## Conservative seven-minute configuration
+## Conservative six-minute configuration
 
 The operational candidate is approximately:
 
 ```text
-3-minute vigilance probe
+2-minute source-prefix SART
 + 2-minute Stroop
 + 2-minute Flanker
-= approximately 7 minutes
+= approximately 6 minutes
 ```
 
 Its four-profile balanced accuracy was `0.744` with macro F1 `0.718`. It returned predictions above `0.60` confidence for 77.4% of sessions; accuracy within those sessions was 84.5%.
@@ -62,7 +62,7 @@ A fixed-duration Stroop yields less evidence for slow and overloaded sessions. T
 
 ## Interpretation
 
-The seven-minute protocol is feasible for a research prototype. Combined prefixes materially outperform either task alone and cross the provisional 0.70 balanced-accuracy threshold. However, the result is an internal recovery analysis because full-session profiles and shortened features come from the same dataset.
+The six-minute protocol is feasible for a research prototype. Combined prefixes materially outperform either task alone and cross the provisional 0.70 balanced-accuracy threshold. However, the result is an internal recovery analysis because full-session profiles and shortened features come from the same dataset.
 
 A redesigned response-contingent Flanker could deliver more than 44 trials in two minutes, but changing stimulus duration or response termination changes the task and requires fresh validation. The present result should not be used to claim production classifier validity.
 
@@ -70,7 +70,7 @@ A redesigned response-contingent Flanker could deliver more than 44 trials in tw
 
 ```text
 20-30 second context check
-3-minute PVT-like vigilance probe
+2-minute source-prefix SART; use 3 minutes when higher single-session fidelity is required
 2-minute Stroop, target >=80 and minimum 60 scored trials
 2-minute Flanker, conservative target 44 scored trials
 probabilistic four-profile control output

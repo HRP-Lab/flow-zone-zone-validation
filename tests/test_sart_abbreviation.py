@@ -6,6 +6,7 @@ from flowzone_validation.sart_abbreviation import (
     binary_threshold_agreement,
     match_sart_sessions,
     prepare_sart_trials,
+    project_average_reliability,
     score_sart_prefix,
     summarize_sart_trials,
 )
@@ -74,13 +75,17 @@ def _paired_summary(full):
 
 def test_sart_prefix_preserves_session_boundaries_and_counts():
     trials = prepare_sart_trials(_raw_sart())
-    prefix = summarize_sart_trials(trials, prefix_trials=144)
-    assert len(prefix) == 24
-    assert prefix["sart_trial_count_raw"].eq(144).all()
-    assert (
-        prefix["sart_go_count_raw"] + prefix["sart_nogo_count_raw"]
-    ).eq(144).all()
-    assert prefix["raw_session_id"].is_unique
+    for prefix_trials in (96, 144):
+        prefix = summarize_sart_trials(
+            trials,
+            prefix_trials=prefix_trials,
+        )
+        assert len(prefix) == 24
+        assert prefix["sart_trial_count_raw"].eq(prefix_trials).all()
+        assert (
+            prefix["sart_go_count_raw"] + prefix["sart_nogo_count_raw"]
+        ).eq(prefix_trials).all()
+        assert prefix["raw_session_id"].is_unique
 
 
 def test_fingerprint_matching_is_participant_bounded_and_exact():
@@ -141,3 +146,24 @@ def test_binary_threshold_agreement_reports_confusion_counts():
     assert result["false_positive"] == 1
     assert result["false_negative"] == 1
     assert result["true_negative"] == 1
+
+
+def test_repeated_session_average_reliability_projection():
+    icc = pd.DataFrame(
+        [
+            {
+                "sart_source": "abbreviated_96",
+                "feature": "engagement",
+                "icc_1": 0.25,
+            }
+        ]
+    )
+    projection = project_average_reliability(
+        icc,
+        session_counts=(1, 7),
+    )
+    assert projection.loc[0, "projected_average_reliability"] == 0.25
+    assert np.isclose(
+        projection.loc[1, "projected_average_reliability"],
+        0.7,
+    )

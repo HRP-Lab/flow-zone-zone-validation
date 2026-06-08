@@ -1,0 +1,3 @@
+metric,abbreviated_column,full_column,n_sessions,pearson_r,spearman_r,lins_ccc,mean_bias,mae,rmse
+engagement_vigilance,sart_2min_engagement_index,sart_engagement_index,744,0.8586277096546328,0.8119604873894096,0.8562458207719489,0.04501013272736101,0.4069275949184115,0.619242529576271
+inhibitory_stability,sart_2min_inhibitory_stability_index,sart_inhibitory_stability_index,744,0.8893391094122707,0.8647301730329235,0.8859523181352613,-0.027249702580117597,0.34649345856149527,0.512184190877035

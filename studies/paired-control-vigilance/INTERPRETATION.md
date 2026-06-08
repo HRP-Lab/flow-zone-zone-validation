@@ -111,11 +111,11 @@ The current internal-recovery evidence justifies prospective validation of:
 
 ```text
 20-30 second context check
-3-minute abbreviated SART or PVT-like vigilance probe
+2-minute abbreviated SART
 2-minute Stroop
 2-minute Flanker
 probabilistic four-profile task-active output
-continuous vigilance output
+continuous vigilance output with an optional low/preserved engagement summary
 abstention for insufficient trials or low confidence
 ```
 
@@ -124,23 +124,21 @@ High-level implementation requirements for all three tasks are specified in
 
 SART is the replication-first option because it was administered in the paired
 study. PVT-B is an alternative when the primary target is low-control
-behavioural alertness and sleep-loss sensitivity. A full source-compatible SART
-would extend the scored battery to approximately 8 minutes 41 seconds; a
-three-minute source-prefix SART preserves the seven-minute target and shows
-strong internal agreement with the full task.
+behavioural alertness and sleep-loss sensitivity. The exact two-minute,
+96-trial source prefix creates a six-minute scored battery. It retained
+engagement-vigilance concordance `.856`, inhibitory-stability concordance
+`.886`, and low-engagement balanced accuracy `.816`.
 
-Across 744 matched sessions, the three-minute SART retained engagement-
-vigilance (`Spearman r = .912`, concordance `.940`) and inhibitory stability
-(`r = .952`, concordance `.961`). Within-person agreement was `.898` and `.930`,
-respectively. The low-engagement flag achieved balanced accuracy `.883` and
-kappa `.763` against the full task.
+The two-minute version also retained both between-person (`.837`) and
+within-person (`.777`) engagement-vigilance ordering. It is nevertheless less
+reliable as a one-off measure: engagement ICC was `.248`, compared with `.347`
+for three minutes and `.391` for the full task. It should therefore be treated
+as the minimum-duration longitudinal option, with uncertainty and abstention.
 
-This supports the exact first-144-trial source sequence as the current
-seven-minute protocol choice. It does not validate a newly balanced sequence or
-an independently administered short SART. Repeat-session ICC and downstream
-profile prediction were modestly weaker than with the full task. A 3m45s
-180-trial option provides materially higher fidelity when an extra 45 seconds
-is acceptable.
+The exact first-144-trial source sequence remains the preferred seven-minute
+choice: engagement and inhibition concordance were `.940` and `.961`, and
+low-engagement balanced accuracy was `.883`. Neither result validates a newly
+balanced sequence or an independently administered short SART.
 
 For Stroop, target at least 80 scored trials and normally abstain below 60. The
 source Flanker timing supports 44 trials as a conservative two-minute minimum.
@@ -148,10 +146,30 @@ A response-contingent app may obtain more, but changing the source timing is a
 new protocol requiring validation.
 
 The first several longitudinal sessions should establish a personal reference
-distribution rather than produce strong routing advice. A defensible
-development sequence is:
+distribution rather than produce strong routing advice. For the two-minute
+SART, Spearman-Brown planning projections based on the observed ICC suggest
+about `.70` engagement-baseline reliability from seven comparable sessions and
+about `.77` from ten. These are projections, not observed week-long
+reliability, and require prospective confirmation.
 
-1. collect 5-10 baseline sessions across several days and times;
+The intended `4 x 2` representation should retain two levels:
+
+```text
+person baseline:
+long-run propensity across four task-active profiles
++ long-run vigilance/engagement tendency
+
+current session:
+departure from the person's control-profile baseline
++ departure from the person's vigilance baseline
+```
+
+The eight combinations should not initially be treated as independent,
+equally frequent, or hard classes. The app should report joint probabilities
+only after a prospective repeated-measures study estimates their dependence.
+A defensible development sequence is:
+
+1. collect 7-10 baseline sessions across at least one week and varied times;
 2. estimate person-centered deviations alongside population scores;
 3. return probabilities and uncertainty rather than a hard label;
 4. test same-day reliability and prediction of an independent work outcome;

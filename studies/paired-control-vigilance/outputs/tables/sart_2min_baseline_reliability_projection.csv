@@ -1,0 +1,21 @@
+sart_source,feature,single_session_icc,baseline_sessions,projected_average_reliability,assumption
+full_225,sart_inhibitory_stability_index,0.49118157270242724,1,0.49118157270242724,Spearman-Brown projection under comparable independent session error
+full_225,sart_inhibitory_stability_index,0.49118157270242724,3,0.7433273371344594,Spearman-Brown projection under comparable independent session error
+full_225,sart_inhibitory_stability_index,0.49118157270242724,5,0.8283759182509198,Spearman-Brown projection under comparable independent session error
+full_225,sart_inhibitory_stability_index,0.49118157270242724,7,0.8710902209032404,Spearman-Brown projection under comparable independent session error
+full_225,sart_inhibitory_stability_index,0.49118157270242724,10,0.9061330440660907,Spearman-Brown projection under comparable independent session error
+full_225,sart_engagement_index,0.3910171950317637,1,0.3910171950317637,Spearman-Brown projection under comparable independent session error
+full_225,sart_engagement_index,0.3910171950317637,3,0.6582654025287767,Spearman-Brown projection under comparable independent session error
+full_225,sart_engagement_index,0.3910171950317637,5,0.762493576737025,Spearman-Brown projection under comparable independent session error
+full_225,sart_engagement_index,0.3910171950317637,7,0.8180023824747906,Spearman-Brown projection under comparable independent session error
+full_225,sart_engagement_index,0.3910171950317637,10,0.8652440914407868,Spearman-Brown projection under comparable independent session error
+abbreviated_96,sart_inhibitory_stability_index,0.36698605692300257,1,0.36698605692300257,Spearman-Brown projection under comparable independent session error
+abbreviated_96,sart_inhibitory_stability_index,0.36698605692300257,3,0.6349341849143396,Spearman-Brown projection under comparable independent session error
+abbreviated_96,sart_inhibitory_stability_index,0.36698605692300257,5,0.7435055719759989,Spearman-Brown projection under comparable independent session error
+abbreviated_96,sart_inhibitory_stability_index,0.36698605692300257,7,0.8023015358443331,Spearman-Brown projection under comparable independent session error
+abbreviated_96,sart_inhibitory_stability_index,0.36698605692300257,10,0.8528857996517307,Spearman-Brown projection under comparable independent session error
+abbreviated_96,sart_engagement_index,0.24785976323359568,1,0.24785976323359568,Spearman-Brown projection under comparable independent session error
+abbreviated_96,sart_engagement_index,0.24785976323359568,3,0.49713818436072776,Spearman-Brown projection under comparable independent session error
+abbreviated_96,sart_engagement_index,0.24785976323359568,5,0.6223132032797455,Spearman-Brown projection under comparable independent session error
+abbreviated_96,sart_engagement_index,0.24785976323359568,7,0.6975905585612584,Spearman-Brown projection under comparable independent session error
+abbreviated_96,sart_engagement_index,0.24785976323359568,10,0.7671924287143167,Spearman-Brown projection under comparable independent session error

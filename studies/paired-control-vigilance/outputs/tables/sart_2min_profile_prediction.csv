@@ -1,0 +1,7 @@
+sart_source,model,features,n_sessions,n_participants,folds,maximum_participant_overlap,balanced_accuracy,chance_accuracy
+full_225,engagement_only,sart_engagement_index,744,456,5,0,0.4113337980071486,0.25
+full_225,inhibitory_only,sart_inhibitory_stability_index,744,456,5,0,0.3296090879268276,0.25
+full_225,two_sart_dimensions,sart_engagement_index;sart_inhibitory_stability_index,744,456,5,0,0.40847664508889897,0.25
+abbreviated_96,engagement_only,sart_engagement_index,744,456,5,0,0.3687587266324841,0.25
+abbreviated_96,inhibitory_only,sart_inhibitory_stability_index,744,456,5,0,0.35267360900097466,0.25
+abbreviated_96,two_sart_dimensions,sart_engagement_index;sart_inhibitory_stability_index,744,456,5,0,0.37084988323179047,0.25

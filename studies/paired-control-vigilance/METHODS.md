@@ -167,7 +167,7 @@ inside each training fold. Reported metrics were balanced accuracy, macro F1,
 per-class recall, posterior confidence, confident coverage at probability
 `>= 0.60`, and accuracy among confident predictions.
 
-## Three-Minute SART Abbreviation
+## Two- And Three-Minute SART Abbreviation
 
 The raw SART workbook contained 788 complete main blocks of 225 trials. Raw
 bouts were matched to paired-study sessions only within participant. One-to-one
@@ -178,7 +178,16 @@ Assignments were accepted only when the normalized fingerprint cost was at most
 ambiguous assignments and four paired sessions without a candidate raw bout
 were excluded.
 
-The primary abbreviation was the first 144 trials:
+Two source-compatible abbreviations were evaluated. The minimum-duration
+candidate was the first 96 trials:
+
+```text
+96 trials x 1250 ms = 120 seconds
+88 Go trials
+8 NoGo trials
+```
+
+The preferred higher-fidelity candidate was the first 144 trials:
 
 ```text
 144 trials x 1250 ms = 180 seconds
@@ -204,7 +213,7 @@ The validation also repeated:
 - control-profile versus low-engagement association;
 - repeat-session ICC;
 - participant-grouped prediction of task-active efficacy and neutral profile;
-- duration sensitivity at 90, 120, 144, and 180 trials.
+- duration sensitivity at 90, 96, 120, 144, and 180 trials.
 
 Interpretive agreement gates were post hoc and explicitly heuristic. The
 analysis is internal because every abbreviated observation is nested within its
