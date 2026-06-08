@@ -1,0 +1,3 @@
+status,control_profile,model,k,n_sessions,n_participants,bic,aic,component_sizes,valid_components,subgroup_means
+ok,Paired-Control-GMM4-full-C3,overloaded-SART-GMM1,1,51,47,242.4106620301069,232.75153386648526,51,True,
+ok,Paired-Control-GMM4-full-C3,overloaded-SART-GMM2,2,51,47,234.36388194118777,213.11379998122018,20;31,True,"{""sart_engagement_index"":{""0"":-0.2842131629,""1"":-2.3202506723},""sart_inhibitory_stability_index"":{""0"":-0.1056212358,""1"":-1.530700208},""sart_omission_rate"":{""0"":0.0155,""1"":0.1325806452},""sart_go_rt_cv"":{""0"":0.2818305909,""1"":0.4478854798},""sart_commission_rate"":{""0"":0.54,""1"":0.6709677419}}"

@@ -92,6 +92,14 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _portable_path(path: Path) -> str:
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        return resolved.as_posix()
+
+
 def _plot_dimensions(frame: pd.DataFrame, output: Path) -> None:
     import matplotlib
 
@@ -235,11 +243,10 @@ def _render_report(
         "",
         "## 1. Purpose",
         "",
-        "The ACDC Stroop analysis recovered regulated, overloaded, and fast "
-        "brittle task-active profiles but did not recover a clean low-readiness "
-        "profile. This independent paired dataset is used to test whether a "
-        "vigilance-sensitive SART dimension adds information that conflict "
-        "tasks do not measure directly.",
+        "This secondary analysis uses participant-linked Stroop, Flanker, and "
+        "SART sessions to identify neutral task-active control profiles and "
+        "test whether vigilance-sensitive SART dimensions add information that "
+        "conflict tasks do not measure directly.",
         "",
         "## 2. Data and integrity",
         "",
@@ -284,8 +291,9 @@ def _render_report(
             "",
             "Mixtures used three context-adjusted dimensions: control accuracy, "
             "response speed, and conflict resilience. Component count was "
-            "selected by BIC subject to minimum component sizes; three profiles "
-            "were tested but not forced.",
+            "selected by BIC subject to minimum component sizes; component "
+            "counts from one through five were compared and four profiles were "
+            "not forced.",
             "",
             "| Model | Valid | BIC | Posterior entropy | Bootstrap ARI | Sizes |",
             "|---|---|---:|---:|---:|---|",
@@ -627,25 +635,27 @@ def main() -> None:
     write_text(report, args.report)
 
     metrics: dict[str, Any] = {
-        "input": str(args.input),
+        "input": _portable_path(args.input),
         "input_sha256": input_hash,
         "n_sessions": len(complete),
         "n_participants": complete["participant_id"].nunique(),
         "selected_control_model": mixture_result.selected_model_id,
         "figures": {
-            "dimensions": str(
+            "dimensions": _portable_path(
                 args.figure_dir / "paired_vigilance_dimensions.png"
             ),
             "overloaded": (
-                str(args.figure_dir / "paired_overloaded_engagement.png")
+                _portable_path(
+                    args.figure_dir / "paired_overloaded_engagement.png"
+                )
                 if overloaded_figure
                 else None
             ),
         },
         "outputs": {
-            "features": str(args.features),
-            "report": str(args.report),
-            "tables": str(args.output_dir),
+            "features": _portable_path(args.features),
+            "report": _portable_path(args.report),
+            "tables": _portable_path(args.output_dir),
         },
     }
     write_json(metrics, args.metrics)
@@ -654,7 +664,7 @@ def main() -> None:
         ROOT,
         "paired_vigilance_followup",
         {
-            "input": str(args.input),
+            "input": _portable_path(args.input),
             "input_sha256": input_hash,
             "seed": args.seed,
             "bootstrap_repetitions": args.bootstrap_repetitions,

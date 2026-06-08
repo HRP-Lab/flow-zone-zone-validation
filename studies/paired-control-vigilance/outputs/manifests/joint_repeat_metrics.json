@@ -1,0 +1,25 @@
+{
+  "joint_association": {
+    "n_sessions": 768,
+    "n_participants": 466,
+    "engagement_threshold": -0.5,
+    "chi_square": 79.78697285740029,
+    "degrees_freedom": 3,
+    "p_value": 3.4098037817317405e-17,
+    "cramers_v": 0.32231861189627253,
+    "bootstrap_repetitions": 5000
+  },
+  "profile_repeatability": {
+    "n_repeated_sessions": 512,
+    "n_repeated_participants": 210,
+    "participants_with_multiple_profiles_rate": 0.48095238095238096,
+    "median_modal_share": 1.0,
+    "adjacent_transitions": 302,
+    "overall_adjacent_persistence": 0.609271523178808
+  },
+  "parameters": {
+    "seed": 42,
+    "engagement_threshold": -0.5,
+    "bootstrap_repetitions": 5000
+  }
+}

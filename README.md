@@ -29,11 +29,25 @@ The Python script creates `.venv`, installs the package and development
 dependencies from exact tested pins, then runs the tests. The R script
 creates/restores the `renv` environment and writes `renv.lock`.
 
-## Paired Vigilance Data
+## Studies
 
-The paired Stroop, Flanker, and SART follow-up uses the published participant
-summary from Barzykowski et al. (2022). Download it from the OSF view-only
-project:
+This repository now contains two distinct analyses:
+
+| Study | Scope | Publication materials |
+|---|---|---|
+| ACDC pilot | Public Stroop, Flanker, and Simon discovery analysis | [ACDC methods](docs/methods.md) |
+| Paired control-vigilance study | Barzykowski et al. paired Stroop, Flanker, and SART sessions | [Standalone study package](studies/paired-control-vigilance/README.md) |
+
+The paired study has its own provenance, methods, results, interpretation,
+paper guide, reproducible runner, and tracked output artifacts. It should not
+be described as an ACDC replication.
+
+## Paired Study Data
+
+The paired study uses the published Barzykowski et al. (2022) summary and raw
+task workbooks. Download instructions and verified hashes are in
+[DATA_PROVENANCE.md](studies/paired-control-vigilance/DATA_PROVENANCE.md).
+The summary workbook can be downloaded directly with:
 
 ```powershell
 New-Item -ItemType Directory -Force data/raw/stroop_sart_flanker
@@ -46,6 +60,13 @@ Invoke-WebRequest `
 The tested file SHA-256 is
 `884ba8bbae097e81f826fa247c2a0bb785302eb88173fbf88dfb5d3c76b8cd5b`.
 The analysis records the observed hash in the run manifest and report.
+
+Run the complete standalone paired study with:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File `
+  .\scripts\run_paired_study.ps1
+```
 
 ## Run The Pipeline
 
@@ -89,11 +110,17 @@ Rscript scripts/02_extract_trials_acdc.R
 .\.venv\Scripts\python.exe scripts/06_zhang_tang_followup.py
 .\.venv\Scripts\python.exe scripts/07_stroop_zone_count_comparison.py
 .\.venv\Scripts\python.exe scripts/08_short_test_individual_differences.py
-.\.venv\Scripts\python.exe scripts/09_paired_vigilance_analysis.py
 ```
 
 The modelling script reads the audit JSON and automatically skips tasks that
 fail the registered gates. It never bypasses a failed gate.
+
+Paired study stages are intentionally separate from the ACDC runner:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File `
+  .\scripts\run_paired_study.ps1
+```
 
 ## Pipeline
 
@@ -131,7 +158,6 @@ reports/exploratory_clusters.md
 reports/zhang_tang_followup.md
 reports/stroop_zone_count_comparison.md
 reports/stroop_short_test_individual_differences.md
-reports/paired_vigilance_followup.md
 reports/tables/zhang_tang_feature_audit.csv
 reports/tables/zhang_tang_cluster_profiles.csv
 reports/tables/large_update_usefulness.csv
@@ -144,13 +170,16 @@ reports/tables/stroop_trial_count_class_recall.csv
 reports/tables/stroop_participant_profile_occupancy.csv
 reports/tables/stroop_profile_transitions.csv
 reports/tables/stroop_feature_icc.csv
-reports/tables/paired_vigilance_associations.csv
-reports/tables/paired_vigilance_icc.csv
-reports/tables/paired_control_cluster_profiles.csv
 reports/figures/
+studies/paired-control-vigilance/outputs/reports/
+studies/paired-control-vigilance/outputs/tables/
+studies/paired-control-vigilance/outputs/figures/
+studies/paired-control-vigilance/outputs/manifests/
 ```
 
-Raw, interim, processed, and generated report contents are excluded from Git.
+Raw, interim, processed, and top-level generated report contents are excluded
+from Git. The paired study's compact publication tables, figures, and manifests
+are tracked under its standalone directory.
 
 ## Quality Gates
 

@@ -1,0 +1,5 @@
+control_profile,n_sessions,n_participants,adjacent_persistence,ever_profile_always_profile_rate
+Paired-Control-GMM4-full-C1,140,91,0.5529411764705883,0.2967032967032967
+Paired-Control-GMM4-full-C2,268,150,0.7133757961783439,0.4666666666666667
+Paired-Control-GMM4-full-C3,24,20,0.2727272727272727,0.05
+Paired-Control-GMM4-full-C4,80,56,0.4489795918367347,0.19642857142857142

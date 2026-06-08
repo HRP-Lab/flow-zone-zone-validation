@@ -1,0 +1,5 @@
+control_profile,preserved_engagement_sessions,low_engagement_sessions,total_sessions,low_engagement_rate,expected_low_engagement_sessions,low_engagement_observed_expected_ratio,median_engagement_index
+Paired-Control-GMM4-full-C1,130,72,202,0.3564356435643564,57.6015625,1.249966092499661,-0.21704556221229493
+Paired-Control-GMM4-full-C2,332,66,398,0.1658291457286432,113.4921875,0.5815378261168858,0.16964233542368556
+Paired-Control-GMM4-full-C3,16,35,51,0.6862745098039216,14.54296875,2.4066612946548482,-1.2627574349562214
+Paired-Control-GMM4-full-C4,71,46,117,0.39316239316239315,33.36328125,1.378761269172228,-0.28679206764093723

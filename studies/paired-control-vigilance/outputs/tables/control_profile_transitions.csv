@@ -1,0 +1,17 @@
+from_profile,to_profile,count,row_probability
+Paired-Control-GMM4-full-C1,Paired-Control-GMM4-full-C1,47,0.5529411764705883
+Paired-Control-GMM4-full-C1,Paired-Control-GMM4-full-C2,24,0.2823529411764706
+Paired-Control-GMM4-full-C1,Paired-Control-GMM4-full-C3,5,0.058823529411764705
+Paired-Control-GMM4-full-C1,Paired-Control-GMM4-full-C4,9,0.10588235294117647
+Paired-Control-GMM4-full-C2,Paired-Control-GMM4-full-C1,22,0.14012738853503184
+Paired-Control-GMM4-full-C2,Paired-Control-GMM4-full-C2,112,0.7133757961783439
+Paired-Control-GMM4-full-C2,Paired-Control-GMM4-full-C3,7,0.044585987261146494
+Paired-Control-GMM4-full-C2,Paired-Control-GMM4-full-C4,16,0.10191082802547771
+Paired-Control-GMM4-full-C3,Paired-Control-GMM4-full-C1,5,0.45454545454545453
+Paired-Control-GMM4-full-C3,Paired-Control-GMM4-full-C2,2,0.18181818181818182
+Paired-Control-GMM4-full-C3,Paired-Control-GMM4-full-C3,3,0.2727272727272727
+Paired-Control-GMM4-full-C3,Paired-Control-GMM4-full-C4,1,0.09090909090909091
+Paired-Control-GMM4-full-C4,Paired-Control-GMM4-full-C1,6,0.12244897959183673
+Paired-Control-GMM4-full-C4,Paired-Control-GMM4-full-C2,20,0.40816326530612246
+Paired-Control-GMM4-full-C4,Paired-Control-GMM4-full-C3,1,0.02040816326530612
+Paired-Control-GMM4-full-C4,Paired-Control-GMM4-full-C4,22,0.4489795918367347

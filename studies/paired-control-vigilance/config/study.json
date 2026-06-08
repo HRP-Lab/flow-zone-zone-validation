@@ -1,0 +1,36 @@
+{
+  "study_id": "paired-control-vigilance",
+  "title": "Paired Stroop-Flanker-SART Control and Vigilance Study",
+  "analysis_status": "exploratory_secondary_analysis",
+  "seed": 42,
+  "mixture_bootstrap_repetitions": 50,
+  "association_bootstrap_repetitions": 5000,
+  "low_engagement_threshold": -0.5,
+  "control_model_candidates": {
+    "components": [1, 2, 3, 4, 5],
+    "covariance": ["diag", "full"],
+    "selected_by": "minimum BIC among valid solutions",
+    "minimum_component_sessions": 20,
+    "minimum_component_fraction": 0.05
+  },
+  "short_protocol_candidate": {
+    "vigilance_minutes": 3,
+    "stroop_minutes": 2,
+    "flanker_minutes": 2,
+    "minimum_stroop_scored_trials": 60,
+    "target_stroop_scored_trials": 80,
+    "conservative_flanker_trials": 44,
+    "prediction_confidence_threshold": 0.6
+  },
+  "source": {
+    "article_doi": "10.1016/j.dib.2022.108398",
+    "article_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9249604/",
+    "osf_project": "https://osf.io/2gxhy/?view_only=31aa5d5964a943df8d3e7d911d2d7141",
+    "files": {
+      "STROOP_FLANKERS_SART_web_and_lab.xls": "884ba8bbae097e81f826fa247c2a0bb785302eb88173fbf88dfb5d3c76b8cd5b",
+      "Raw_Stroop.xlsx": "7b5dc8ebaae9f498b9d7b83116dbafe4582f0a2ca9301959193df6cc3862464e",
+      "Raw_Flanker.xlsx": "80701562c8d9fcd1df9e418e2c1a237a126fedf7eaa0812132cc1bd2c324d82e",
+      "Raw_Sart.xlsx": "b4f04ab9b583a92f31ee45e83a27fe9c63011147560118b1b9b06ded244998fe"
+    }
+  }
+}

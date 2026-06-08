@@ -1,0 +1,5 @@
+score,indicator,direction,equal_weight,diagnostic_pc1_variance,n_complete
+sart_engagement_index,sart_omission_rate,-1,0.5,0.8708426767645542,768
+sart_engagement_index,sart_go_rt_cv,-1,0.5,0.8708426767645542,768
+sart_inhibitory_stability_index,sart_commission_rate,-1,0.5,0.9084681552242648,768
+sart_inhibitory_stability_index,sart_anticipatory_rate,-1,0.5,0.9084681552242648,768

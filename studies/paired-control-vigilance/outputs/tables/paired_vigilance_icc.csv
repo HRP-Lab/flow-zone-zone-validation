@@ -1,0 +1,7 @@
+feature,icc_1,n_windows,n_subjects,mean_windows_per_subject,interpretation
+control_speed_index,0.7182295627704746,512,210,2.4380952380952383,mostly_between_person
+sart_inhibitory_stability_index,0.47320336046886446,512,210,2.4380952380952383,mixed
+task_active_efficacy,0.3964628014621255,512,210,2.4380952380952383,mixed
+sart_engagement_index,0.36121023960713505,512,210,2.4380952380952383,mixed
+control_accuracy_index,0.34299368046213946,512,210,2.4380952380952383,mixed
+conflict_resilience_index,0.29230375171169243,512,210,2.4380952380952383,mixed

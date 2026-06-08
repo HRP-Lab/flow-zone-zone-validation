@@ -1,5 +1,10 @@
 # Cognitive Interpretation of the Stroop Profiles
 
+> This is the ACDC Stroop interpretation and integrated protocol-development
+> note. The publication-facing analysis of the independent paired Stroop,
+> Flanker, and SART dataset is maintained separately in
+> `studies/paired-control-vigilance/`.
+
 ## Purpose
 
 This document provides a provisional cognitive-science interpretation of the
@@ -410,6 +415,63 @@ when low or unstable PVT vigilance converges with personal-baseline deviation,
 context, and preferably physiological or subjective evidence. A brief PVT
 cannot by itself determine whether poor vigilance reflects sleep loss, low
 arousal, low motivation, illness, medication, distraction, or device timing.
+
+### Empirical Seven-Minute Feasibility Check
+
+The raw paired Stroop and Flanker trials were used to test:
+
+```text
+3-minute vigilance probe
++ 2-minute Stroop
++ 2-minute Flanker
+= approximately 7 minutes
+```
+
+The shortened control-task features were evaluated against the exploratory
+four-component full-session partition using participant-isolated five-fold
+validation:
+
+- Matched sessions: `742`.
+- Dataset-scoped participants: `458`.
+- Modelled two-minute Stroop yield: median `101` trials.
+- Conservative two-minute Flanker yield: `44` trials.
+- Four-profile balanced accuracy: `0.744`.
+- Macro F1: `0.718`.
+- Coverage at prediction probability of at least `0.60`: `77.4%`.
+- Accuracy among those higher-confidence predictions: `84.5%`.
+
+Profile-specific recall was:
+
+| Neutral full-session profile | Recall |
+|---|---:|
+| Slow compensatory/cautious candidate | `0.747` |
+| Regulated candidate | `0.796` |
+| Globally overloaded candidate | `0.673` |
+| Fast brittle candidate | `0.759` |
+
+Combined Stroop and Flanker prefixes were materially more informative than
+either task alone. Eighty Stroop plus 44 Flanker trials achieved balanced
+accuracy `0.743`; 100 Stroop plus 44 Flanker trials achieved `0.772`.
+
+The main limitation is differential evidence within a fixed-duration Stroop:
+
+| Candidate profile | Median two-minute trials | Sessions below 80 trials |
+|---|---:|---:|
+| Slow compensatory/cautious | `86` | `32.5%` |
+| Regulated | `106` | `1.0%` |
+| Globally overloaded | `81` | `49.0%` |
+| Fast brittle | `104` | `0.9%` |
+
+Slower profiles produce fewer observations in the same two-minute period. The
+classifier must therefore include trial count as an evidence and quality
+variable. Fewer than 60 valid Stroop trials should normally trigger
+abstention, and 60-79 trials should produce a lower-confidence output.
+
+This is an internal recovery analysis: the full-session reference profiles and
+shortened features came from the same dataset. It supports a seven-minute
+research prototype but does not establish independent classifier validity.
+The authoritative paired-study result is in
+`studies/paired-control-vigilance/outputs/reports/short_combined_task_recovery.md`.
 
 ### Core Short-Test Features
 

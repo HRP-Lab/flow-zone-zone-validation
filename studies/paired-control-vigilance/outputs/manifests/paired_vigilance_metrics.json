@@ -1,0 +1,16 @@
+{
+  "input": "data/raw/stroop_sart_flanker/STROOP_FLANKERS_SART_web_and_lab.xls",
+  "input_sha256": "884ba8bbae097e81f826fa247c2a0bb785302eb88173fbf88dfb5d3c76b8cd5b",
+  "n_sessions": 768,
+  "n_participants": 466,
+  "selected_control_model": "Paired-Control-GMM4-full",
+  "figures": {
+    "dimensions": "studies/paired-control-vigilance/outputs/figures/paired_vigilance_dimensions.png",
+    "overloaded": "studies/paired-control-vigilance/outputs/figures/paired_overloaded_engagement.png"
+  },
+  "outputs": {
+    "features": "data/processed/paired_vigilance_session_features.parquet",
+    "report": "studies/paired-control-vigilance/outputs/reports/main_analysis.md",
+    "tables": "studies/paired-control-vigilance/outputs/tables"
+  }
+}

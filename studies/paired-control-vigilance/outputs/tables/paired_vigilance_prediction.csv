@@ -1,0 +1,6 @@
+model,features,n_sessions,n_participants,folds,maximum_participant_overlap,r2,mae,rmse
+intercept_only,,768,466,5,0,-0.007485219541760957,0.37395242144360646,0.5004197452605972
+engagement_only,sart_engagement_index,768,466,5,0,0.12607078685492412,0.34674913495455223,0.4660722268715565
+inhibitory_only,sart_inhibitory_stability_index,768,466,5,0,0.044782285212374706,0.3614040046236684,0.4872661919705751
+two_sart_dimensions,sart_engagement_index;sart_inhibitory_stability_index,768,466,5,0,0.11733814447003443,0.3486988811847375,0.4683950266715136
+expanded_sart,sart_engagement_index;sart_inhibitory_stability_index;sart_go_mean_rt_ms;sart_pre_failure_speeding_ms,768,466,5,0,0.1092498964093962,0.35039263904014684,0.470536195306751

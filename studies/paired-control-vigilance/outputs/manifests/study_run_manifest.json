@@ -1,0 +1,27 @@
+{
+  "git_commit": "680554b604568ab596e2bf735a2a8ef93188f558",
+  "python": {
+    "version": "3.12.10",
+    "implementation": "CPython",
+    "packages": {
+      "numpy": "2.4.6",
+      "pandas": "3.0.3",
+      "pyarrow": "24.0.0",
+      "scikit-learn": "1.9.0",
+      "scipy": "1.17.1",
+      "statsmodels": "0.14.6",
+      "hdbscan": "0.8.44"
+    }
+  },
+  "stages": {
+    "paired_vigilance_followup": {
+      "input": "data/raw/stroop_sart_flanker/STROOP_FLANKERS_SART_web_and_lab.xls",
+      "input_sha256": "884ba8bbae097e81f826fa247c2a0bb785302eb88173fbf88dfb5d3c76b8cd5b",
+      "seed": 42,
+      "bootstrap_repetitions": 50,
+      "selected_control_model": "Paired-Control-GMM4-full",
+      "n_sessions": 768,
+      "n_participants": 466
+    }
+  }
+}

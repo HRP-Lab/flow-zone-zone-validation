@@ -571,6 +571,21 @@ def summarize_control_profiles(frame: pd.DataFrame) -> pd.DataFrame:
             profiles.loc[brittle, "provisional_pattern_note"] = (
                 "fast_brittle_candidate"
             )
+        elif len(profiles) == 4:
+            remaining = profiles.index.difference([regulated, overloaded])
+            slow_compensatory = profiles.loc[
+                remaining,
+                "mean_control_speed_index",
+            ].idxmin()
+            fast_brittle = remaining.difference([slow_compensatory])[0]
+            profiles.loc[
+                slow_compensatory,
+                "provisional_pattern_note",
+            ] = "slow_compensatory_candidate"
+            profiles.loc[
+                fast_brittle,
+                "provisional_pattern_note",
+            ] = "fast_brittle_candidate"
     return profiles
 
 
