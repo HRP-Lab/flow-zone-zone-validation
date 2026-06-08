@@ -1,0 +1,16 @@
+{
+  "study_id": "healthy-rr-component-replication",
+  "seed": 42,
+  "source_url": "https://github.com/HRP-Lab/Flow-Zone/tree/main/healthy_data",
+  "source_commit": "6e6a6a43ce44e0bbbfd992c67124f6613b0a7de9",
+  "participants": 11,
+  "window_durations_seconds": [120, 180, 300],
+  "primary_window_seconds": 120,
+  "maximum_hours_per_participant_per_duration": 8,
+  "rr_limits_ms": [300, 2000],
+  "maximum_rr_correction_fraction": 0.05,
+  "fixed_replication_components": 3,
+  "tucker_congruence_threshold": 0.85,
+  "participant_bootstrap_repetitions": 200,
+  "claim_boundary": "Long-term RR component replication, not confirmed resting-state or autonomic-zone validation."
+}

@@ -31,13 +31,14 @@ creates/restores the `renv` environment and writes `renv.lock`.
 
 ## Studies
 
-This repository now contains three distinct analyses:
+This repository now contains four distinct analyses:
 
 | Study | Scope | Publication materials |
 |---|---|---|
 | ACDC pilot | Public Stroop, Flanker, and Simon discovery analysis | [ACDC methods](docs/methods.md) |
 | Paired control-vigilance study | Barzykowski et al. paired Stroop, Flanker, and SART sessions | [Standalone study package](studies/paired-control-vigilance/README.md) |
 | COG-BCI cognitive-autonomic bridge | Concurrent ECG and cognitive performance across PVT, Flanker, N-back, and MATB | [Standalone bridge study](studies/cog-bci-hrv-bridge/README.md) |
+| Healthy long-term RR replication | Independent replication of the COG-BCI autonomic component structure in 11 long-term RR recordings | [Standalone replication study](studies/healthy-rr-replication/README.md) |
 
 The paired study has its own provenance, methods, results, interpretation,
 paper guide, reproducible runner, and tracked output artifacts. It should not
@@ -47,6 +48,11 @@ The COG-BCI bridge study tests short-window RR/HRV measurement, autonomic
 dimensions, cognitive-autonomic coupling, and incremental prediction. It is
 bridge evidence for prospective concurrent RR collection during the proposed
 SART-Stroop-Flanker protocol, not validation of that exact battery.
+
+The healthy RR study tests whether those within-person autonomic covariance
+patterns recur in an independent dataset. The source recordings are not
+labelled as rest, so this is a long-term RR replication rather than a
+resting-state or autonomic-zone validation.
 
 ## Paired Study Data
 

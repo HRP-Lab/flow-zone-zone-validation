@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "source_participants": 11,
+  "source_hours": 219.93410138888888,
+  "primary_analysis": {
+    "status": "ok",
+    "n_windows": 2625,
+    "n_participants": 11,
+    "fixed_components": 3,
+    "parallel_analysis_components": 3,
+    "explained_variance_ratio": [
+      0.4389366531534214,
+      0.2513341946532988,
+      0.19357527971693592
+    ]
+  },
+  "stationary_sensitivity_windows": 838
+}

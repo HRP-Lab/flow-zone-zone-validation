@@ -1,0 +1,4 @@
+reference_component,candidate_component,signed_tucker_congruence,absolute_tucker_congruence,orientation_multiplier
+1,1,0.9818857063072964,0.9818857063072964,1.0
+2,2,0.8268768057507153,0.8268768057507153,1.0
+3,3,-0.8132864424966872,0.8132864424966872,-1.0

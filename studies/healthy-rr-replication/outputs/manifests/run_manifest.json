@@ -1,0 +1,43 @@
+{
+  "git_commit": "8c4235034a4b139406ead4bfa00958b5e5fcb6f4",
+  "python": {
+    "version": "3.12.10",
+    "implementation": "CPython",
+    "packages": {
+      "numpy": "2.4.6",
+      "pandas": "2.3.3",
+      "pyarrow": "24.0.0",
+      "scikit-learn": "1.9.0",
+      "scipy": "1.17.1",
+      "statsmodels": "0.14.6",
+      "hdbscan": "0.8.44"
+    }
+  },
+  "stages": {
+    "healthy_rr_component_replication": {
+      "seed": 42,
+      "source_url": "https://github.com/HRP-Lab/Flow-Zone/tree/main/healthy_data",
+      "participants": 11,
+      "source_hours": 219.93410138888888,
+      "maximum_hours_per_participant_per_duration": 8.0,
+      "durations_seconds": [
+        120,
+        180,
+        300
+      ],
+      "primary": {
+        "status": "ok",
+        "n_windows": 2625,
+        "n_participants": 11,
+        "fixed_components": 3,
+        "parallel_analysis_components": 3,
+        "explained_variance_ratio": [
+          0.4389366531534214,
+          0.2513341946532988,
+          0.19357527971693592
+        ]
+      },
+      "bootstrap_repetitions": 200
+    }
+  }
+}
